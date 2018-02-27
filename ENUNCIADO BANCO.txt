@@ -1,6 +1,6 @@
 para la app del banco:
 app 1: TODA LA APP (ABRIR Y CERRAR CUENTA, MOVIMIENTOS)
-	servidor con java y un cliente con angular
+	servidor con java y un cliente con JQUERY
 	(es el cliente del banco principal)
 app 2: SOLO RECIBOS (MOVIMIENTOS)
 	servidor con php que se conecta al api rest de java y otra vista pinta
@@ -13,7 +13,7 @@ valoracion app (santi):
 	portada
 	indice
 	introduccion
-	apartado ajax + angular
+	apartado ajax
 	apartado less
 		variables
 		extends
