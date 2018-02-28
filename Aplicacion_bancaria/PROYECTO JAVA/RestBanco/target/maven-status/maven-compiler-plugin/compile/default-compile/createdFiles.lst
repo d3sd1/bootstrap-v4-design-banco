@@ -1,7 +1,10 @@
 config\DBConnection.class
+filters\ParseData.class
 config\ConfigListener.class
-filters\JsonResponse.class
+servlets\Login$1.class
 servlets\Cuentas.class
 servlets\Login.class
 config\Configuration.class
+filters\Cors.class
+model\User.class
 servlets\Movimientos.class
