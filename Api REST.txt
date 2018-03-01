@@ -1,0 +1,11 @@
+Códigos de respuesta:
+400 - Parámetros inválidos
+401 - Petición no autorizada
+406 - Petición errónea
+
+- El login no usa JWT para simplificar el código.
+
+URLs de api rest:
+/login
+	GET -> 
+	POST -> Enviar credenciales de login, devuelve token si es válida.

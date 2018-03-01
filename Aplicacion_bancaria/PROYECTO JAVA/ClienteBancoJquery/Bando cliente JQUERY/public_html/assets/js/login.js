@@ -1,16 +1,31 @@
+$(document).ready(function () {
+    /* Utilizando promise */
+    isUserConnected().then(function (loggedIn) {
+        if(loggedIn)
+        {
+            window.location.replace("home.html");
+        }
+    });
+});
 $("#login").submit(function (event) {
     $.ajax({
         url: API_REST_URL + "/login",
         type: "POST",
         data: loginFormToJson(),
-        beforeSend : function()
+        beforeSend: function ()
         {
             $("#loading").show();
         },
-        success: function (result) {
-            console.log(result);
+        error: function ()
+        {
+            Materialize.toast("DNI o contraseña incorrectos.", 4000);
         },
-        complete: function()
+        success: function (result) {
+            localStorage.setItem("token", JSON.parse(result));
+            Materialize.toast("Te has conectado correctamente.", 4000);
+            window.location.replace("home.html");
+        },
+        complete: function ()
         {
             $("#loading").hide();
         }
@@ -19,11 +34,12 @@ $("#login").submit(function (event) {
 });
 function loginFormToJson() {
 
-  var returnArray = [],
-      data = JSON.stringify($("#login").serializeArray());
-      
-  for (var i = 0; i < formArray.length; i++){
-    returnArray[formArray[i]['name']] = formArray[i]['value'];
-  }
-  return returnArray;
+    var returnArray = {},
+            dataArr = $("#login").serializeArray();
+    for (var data in dataArr)
+    {
+        var input = dataArr[data];
+        returnArray[input.name] = input.value;
+    }
+    return JSON.stringify(returnArray);
 }

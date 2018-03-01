@@ -1,4 +1,4 @@
 driverDB: com.mysql.jdbc.Driver
-urlDB: jdbc:mysql://localhost:3306/banco?useSSL=false
-userDB: root
-passDB: 
+urlDB: jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223846?useSSL=false
+userDB: sql11223846
+passDB: YNhfrWcljK

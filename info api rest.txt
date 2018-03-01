@@ -1,5 +1,0 @@
-/cuentas
-put -> abrir cuenta
-post -> actualizar cuenta
-get -> devuelve datos cuenta
-delete -> borra la cuenta

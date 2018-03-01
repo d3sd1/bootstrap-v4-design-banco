@@ -1,5 +1,6 @@
-package config;
+package dao;
 
+import config.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,15 @@ public class DBConnection {
     public DBConnection() {
 
     }
+    private static DBConnection dbconection = null;
 
+    public static DBConnection getInstance(){
+        if (dbconection == null)
+            dbconection = new DBConnection();
+       
+        return dbconection;
+    }
+    
     public Connection getConnection() throws Exception {
         Class.forName(Configuration.getInstance().getDriverDB());
         Connection connection = null;

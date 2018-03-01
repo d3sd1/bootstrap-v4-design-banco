@@ -1,10 +1,13 @@
-config\DBConnection.class
+servlets\Login.class
+filters\Cors.class
+utils\PasswordHash.class
 filters\ParseData.class
+services\UsersServices.class
+dao\DBConnection.class
 config\ConfigListener.class
+dao\UsersDAO.class
 servlets\Login$1.class
 servlets\Cuentas.class
-servlets\Login.class
 config\Configuration.class
-filters\Cors.class
 model\User.class
 servlets\Movimientos.class

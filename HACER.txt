@@ -1,0 +1,4 @@
+- subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
+- subir db online
+- subir el proyecto con todos los codigos y la db
+- que el login (el token) caduque al cierto tiempl. pensar si usar JWT (preguntarselo el viernes).

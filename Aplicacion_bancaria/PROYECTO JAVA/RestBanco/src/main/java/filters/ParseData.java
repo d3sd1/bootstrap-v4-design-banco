@@ -1,5 +1,6 @@
 package filters;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -37,39 +38,18 @@ public class ParseData implements Filter
     {
         /* PARSE BODY TO JSON */
         String json = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        /*List<AbstractMap.SimpleEntry<String, String>> list = 
-        Pattern.compile("&").splitAsStream(url.getQuery())
-        .map(s -> Arrays.copyOf(s.split("="), 2))
-        .map(o -> new AbstractMap.SimpleEntry<String, String>(decode(o[0]), decode(o[1])))
-        .collect(toList());*/
         request.setAttribute("json", json);
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException
     {
-        if (debug)
+        ObjectMapper mapper = new ObjectMapper();
+        Object data = request.getAttribute("data");
+        if (data != null)
         {
-            log("ParseData:DoAfterProcessing");
+            mapper.writeValue(response.getOutputStream(), data);
         }
-
-        // Write code here to process the request and/or response after
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log the attributes on the
-        // request object after the request has been processed. 
-        /*
-	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
-	    String name = (String)en.nextElement();
-	    Object value = request.getAttribute(name);
-	    log("attribute: " + name + "=" + value.toString());
-
-	}
-         */
-        // For example, a filter might append something to the response.
-        /*
-	PrintWriter respOut = new PrintWriter(response.getWriter());
-	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
-         */
     }
 
     /**
