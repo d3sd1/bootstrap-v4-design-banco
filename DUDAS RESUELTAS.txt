@@ -1,0 +1,9 @@
+preguntar si puedo usar jwt -> SI
+--------
+en el ejercicio pide primero comprobar la cuenta... y luego seguir el form
+no seria mejor rellenar todo y luego procesarlo? ya que no existe un metodo check en el rest de java
+-> COMO ME SALGA DE LA POLLA
+--------
+preguntarle si esta bien lo de las variables (de template) con jquery y usarlo fuera del proyecto de java
+-> PERFECTO
+--------
