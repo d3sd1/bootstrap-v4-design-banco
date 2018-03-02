@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BBVA - Inicio</title>
+        <title>BBVA - Listado de movimientos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
         <link rel="stylesheet" href="assets/css/materialize.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div class="navbar-fixed">
@@ -16,7 +18,7 @@
                     <a href="#" class="brand-logo center"><img alt="Logotipo" draggable="false" src="assets/img/logo.jpg"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="list_transactions.html">Listado de movimientos</a></li>
+                        <li class="active"><a href="list_transactions.html">Listado de movimientos</a></li>
                         <li><a href="users.html">CRUD de Personal</a></li>
                         <li><a class="dropdown-button" href="#!" data-activates="userInfo" data-beloworigin="true">{{user_name}}<i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
@@ -31,7 +33,7 @@
                     <ul class="side-nav" id="mobile-demo">
                         <li>{{user_name}}</li>
                         <li><a href="transactions.html">Ingresos y reintegros</a></li>
-                        <li><a href="list_transactions.html">Listado de movimientos</a></li>
+                        <li class="active"><a href="list_transactions.html">Listado de movimientos</a></li>
                         <li><a href="open_account.html">Apertura de cuentas</a></li>
                         <li><a href="close_account.html">Cierre de cuentas</a></li>
                         <li><a href="users.html">Crud de Personal</a></li>
@@ -45,12 +47,51 @@
         </div>
         <div class="section white" id="content-container">
             <div class="row container center-align">
-                <h2>¡Bienvenid@, {{user_name}}!</h2>
-                <p class="grey-text text-darken-3 lighten-3">Ya puedes hacer uso del panel dinámico.</p>
+                <h2>Listado de movimientos</h2>
+                <div class="row">
+                    <form class="col s12" id="filtrarMovimientos">
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">account_balance_wallet </i>
+                                <input id="icon_prefix" type="text" pattern="[0-9]{10}" maxlength="10" class="validate">
+                                <label for="icon_prefix">Número de cuenta</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">date_range</i>
+                                <input id="icon_telephone" type="text" class="validate datepicker">
+                                <label for="icon_telephone">Fecha de inicio</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <i class="material-icons prefix">date_range</i>
+                                <input id="icon_telephone" type="text" class="validate datepicker">
+                                <label for="icon_telephone">Fecha final</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <button type="submit" class="waves-effect waves-light btn col s12"><i class="material-icons right">arrow_forward</i>Filtrar</button>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+                <table id="movimientos" class="display responsive nowrap" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Número de cuenta</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Número de cuenta</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Importe</th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-        </div>
-        <div class="parallax-container">
-            <div class="parallax"><img alt="Parallax 2" src="assets/img/parallax/bg2.jpg"></div>
         </div>
         <footer class="page-footer">
             <div class="container">
@@ -83,10 +124,29 @@
                 <i class="large material-icons">power_settings_new</i>
             </a>
         </div>
+        <div id="cargandoMovimientos" class="modal">
+            <div class="modal-content center-align">
+                <h4>Cargando movimientos...</h4>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.js"></script>
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
         <script type="text/javascript" src="assets/js/models.js"></script>
         <script type="text/javascript" src="assets/js/global.js"></script>
         <script type="text/javascript" src="assets/js/logged-in.js"></script>
+        <script type="text/javascript" src="assets/js/list-movements.js"></script>
     </body>
 </html>

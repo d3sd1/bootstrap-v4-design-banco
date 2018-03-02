@@ -2,3 +2,4 @@
 - subir db online
 - subir el proyecto con todos los codigos y la db
 - que el login (el token) caduque al cierto tiempl. pensar si usar JWT (preguntarselo el viernes).
+- claves foraneas etc de la db

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BBVA - Inicio</title>
+        <title>BBVA - Abrir cuenta</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
@@ -24,14 +24,14 @@
                         <li><a data-trigger="logout">Desconectar</a></li>
                     </ul>
                     <ul class="left hide-on-med-and-down">
-                        <li><a href="open_account.html">Apertura de cuentas</a></li>
+                        <li class="active"><a href="open_account.html">Apertura de cuentas</a></li>
                         <li><a href="close_account.html">Cierre de cuentas</a></li>
                         <li><a href="transactions.html">Ingresos y reintegros</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li>{{user_name}}</li>
                         <li><a href="transactions.html">Ingresos y reintegros</a></li>
-                        <li><a href="list_transactions.html">Listado de movimientos</a></li>
+                        <li class="active"><a href="list_transactions.html">Listado de movimientos</a></li>
                         <li><a href="open_account.html">Apertura de cuentas</a></li>
                         <li><a href="close_account.html">Cierre de cuentas</a></li>
                         <li><a href="users.html">Crud de Personal</a></li>
@@ -45,12 +45,19 @@
         </div>
         <div class="section white" id="content-container">
             <div class="row container center-align">
-                <h2>¡Bienvenid@, {{user_name}}!</h2>
-                <p class="grey-text text-darken-3 lighten-3">Ya puedes hacer uso del panel dinámico.</p>
+                <h2>Apertura de cuentas</h2>
+                <form id="openAccount">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <input name="bank_account" type="text" pattern="[0-9]{10}" maxlength="10" class="validate center-align">
+                            <label class="active" for="bank_account">Número de cuenta</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">arrow_forward</i>Comprobar cuenta</button>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="parallax-container">
-            <div class="parallax"><img alt="Parallax 2" src="assets/img/parallax/bg2.jpg"></div>
         </div>
         <footer class="page-footer">
             <div class="container">
@@ -88,5 +95,6 @@
         <script type="text/javascript" src="assets/js/models.js"></script>
         <script type="text/javascript" src="assets/js/global.js"></script>
         <script type="text/javascript" src="assets/js/logged-in.js"></script>
+        <script type="text/javascript" src="assets/js/open-account.js"></script>
     </body>
 </html>

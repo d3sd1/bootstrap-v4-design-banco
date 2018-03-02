@@ -12,19 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 {
     "/users"
 })
-public class Users extends HttpServlet
+public class User extends HttpServlet
 {
    
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         
     }

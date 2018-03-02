@@ -1,17 +1,14 @@
 $(document).ready(function () {
     /* Utilizando promise */
-    isUserConnected().then(function (loggedIn) {
-        if(loggedIn)
-        {
-            window.location.replace("home.html");
-        }
+    isUserConnected().then(function () {
+        window.location.replace("home.html");
     });
 });
 $("#login").submit(function (event) {
     $.ajax({
         url: API_REST_URL + "/login",
         type: "POST",
-        data: loginFormToJson(),
+        data: formToJson($("#login")),
         beforeSend: function ()
         {
             $("#loading").show();
@@ -32,14 +29,3 @@ $("#login").submit(function (event) {
     });
     event.preventDefault();
 });
-function loginFormToJson() {
-
-    var returnArray = {},
-            dataArr = $("#login").serializeArray();
-    for (var data in dataArr)
-    {
-        var input = dataArr[data];
-        returnArray[input.name] = input.value;
-    }
-    return JSON.stringify(returnArray);
-}

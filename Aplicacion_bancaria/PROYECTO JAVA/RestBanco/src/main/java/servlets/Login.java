@@ -26,17 +26,16 @@ public class Login extends HttpServlet
     pero no devuelve sus datos (solo comprobación).
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         try
         {
-        UsersServices srv = new UsersServices();
+            UsersServices srv = new UsersServices();
             String pathInfo = request.getPathInfo();
             String[] pathParts = pathInfo.split("/");
             String token = pathParts[1];
             boolean foundToken = srv.checkToken(token);
-            if(foundToken)
+            if (foundToken)
             {
                 response.setStatus(200);
             }
@@ -49,7 +48,6 @@ public class Login extends HttpServlet
         {
             response.setStatus(406);
         }
-
     }
 
     /*

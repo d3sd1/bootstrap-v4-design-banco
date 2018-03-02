@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.MovementsServices;
 
 @WebServlet(name = "Movimientos", urlPatterns =
 {
@@ -14,11 +15,26 @@ import javax.servlet.http.HttpServletResponse;
 public class Movimientos extends HttpServlet
 {
 
+    /* Listado de movimientos general */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        // devuelve el listado de movimientos de
+        try
+        {
+            MovementsServices srv = new MovementsServices();
+            
+            request.setAttribute("data", srv.getAllMovimientos());
+        }
+        catch (Exception e)
+        {
+            response.setStatus(406);
+        }
+    }
+    /* Listado de movimientos por fecha y/o cuenta */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        
     }
     
     @Override

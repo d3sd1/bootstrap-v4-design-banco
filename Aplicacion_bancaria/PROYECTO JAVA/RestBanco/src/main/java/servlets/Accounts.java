@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 {
     "/cuentas"
 })
-public class Cuentas extends HttpServlet
+public class Accounts extends HttpServlet
 {
 
     @Override
