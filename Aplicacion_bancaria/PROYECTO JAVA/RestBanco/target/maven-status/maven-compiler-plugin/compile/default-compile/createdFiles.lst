@@ -1,5 +1,10 @@
+dao\MovimientosDAO.class
+utils\Utils.class
+model\Movimiento.class
 servlets\Login.class
+servlets\User.class
 filters\Cors.class
+servlets\Accounts.class
 utils\PasswordHash.class
 filters\ParseData.class
 services\UsersServices.class
@@ -7,7 +12,7 @@ dao\DBConnection.class
 config\ConfigListener.class
 dao\UsersDAO.class
 servlets\Login$1.class
-servlets\Cuentas.class
 config\Configuration.class
 model\User.class
 servlets\Movimientos.class
+services\MovementsServices.class

@@ -23,20 +23,26 @@ $(document).ready(function () {
 
 });
 $("#filtrarMovimientos").submit(function (e) {
-    var camposVacios = false;
-    $("#filtrarMovimientos input").each(function () {
+    var numeroCuenta = $("#filtrarMovimientos input[name='numeroCuenta']").val(),
+            fechaInicio = $("#filtrarMovimientos input[name='fechaInicio']").val(),
+            fechaFinal = $("#filtrarMovimientos input[name='fechaFinal']").val();
 
-    });
-    if (camposVacios)
+    if (numeroCuenta === null || numeroCuenta === "" ||
+            fechaInicio === null || fechaInicio === "" ||
+            fechaFinal === null || fechaFinal === "")
     {
         Materialize.toast("Para filtrar movimientos debes rellenar todos los datos.", 4000);
+    }
+    else if (!checkBankAccountFormat(numeroCuenta))
+    {
+        Materialize.toast("El formato de la cuenta es incorrecto.", 4000);
     }
     else
     {
         var data = formToJson($("#filtrarMovimientos"));
         filtrarMovimientos(data);
-        e.preventDefault();
     }
+    e.preventDefault();
 });
 function listarMovimientos()
 {
@@ -63,7 +69,6 @@ function listarMovimientos()
 }
 function filtrarMovimientos(data)
 {
-    console.log(data);
     $.ajax({
         url: API_REST_URL + "/movimientos",
         type: "POST",
@@ -72,9 +77,9 @@ function filtrarMovimientos(data)
         {
             $("#cargandoMovimientos").modal("open");
         },
-        error: function ()
+        error: function (xhr)
         {
-            Materialize.toast("No se han podido cargar movimientos.", 4000);
+            Materialize.toast(xhr.responseText, 4000);
         },
         success: function (result) {
             var movimientos = JSON.parse(result);

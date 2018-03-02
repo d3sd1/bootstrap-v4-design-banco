@@ -7,9 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import utils.Utils;
 
 public class UsersDAO {
-    private final String SQL_QUERY_GET_USER_DNI = "SELECT name,surnames,token,pass FROM users WHERE dni=?";
-    private final String SQL_QUERY_GET_USER_TOKEN = "SELECT id,dni,name,surnames,token,pass FROM users WHERE token=?";
-    private final String SQL_QUERY_UPDATE_USER_TOKEN = "UPDATE users SET token=? WHERE dni=?";
+    private final String SQL_QUERY_GET_USER_DNI = "SELECT nombre,apellidos,token,pass FROM usuarios WHERE dni=?";
+    private final String SQL_QUERY_GET_USER_TOKEN = "SELECT id,dni,nombre,apellidos,token,pass FROM usuarios WHERE token=?";
+    private final String SQL_QUERY_UPDATE_USER_TOKEN = "UPDATE usuarios SET token=? WHERE dni=?";
     public User getUserByDni(User user)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
