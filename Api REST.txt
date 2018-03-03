@@ -4,7 +4,6 @@ Códigos de respuesta:
 406 - Petición errónea
 
 - El login no usa JWT para simplificar el código.
-
 URLs de api rest:
 /login
 	GET -> 

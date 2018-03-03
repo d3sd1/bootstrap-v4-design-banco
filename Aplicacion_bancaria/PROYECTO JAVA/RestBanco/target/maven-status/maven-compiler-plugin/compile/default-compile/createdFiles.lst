@@ -1,3 +1,10 @@
+model\FiltrarMovimientos.class
+dao\MovimientosDAO.class
+model\Cuenta.class
+utils\Utils.class
+servlets\Movimientos$1.class
+filters\Codificacion.class
+model\Movimiento.class
 servlets\Login.class
 filters\Cors.class
 utils\PasswordHash.class
@@ -5,9 +12,12 @@ filters\ParseData.class
 services\UsersServices.class
 dao\DBConnection.class
 config\ConfigListener.class
+Exceptions\CuentaNoEncontradaException.class
 dao\UsersDAO.class
 servlets\Login$1.class
 servlets\Cuentas.class
 config\Configuration.class
 model\User.class
 servlets\Movimientos.class
+dao\CuentasDAO.class
+services\MovementsServices.class
