@@ -10,6 +10,7 @@ $(document).ready(function () {
     $(".parallax").parallax();
     $(".button-collapse").sideNav();
     $(".tap-target").tapTarget("open");
+    $('.collapsible').collapsible();
     getUserInfo();
 });
 /* 

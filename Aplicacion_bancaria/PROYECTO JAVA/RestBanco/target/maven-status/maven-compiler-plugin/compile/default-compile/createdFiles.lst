@@ -1,32 +1,26 @@
-<<<<<<< HEAD
-model\FiltrarMovimientos.class
 dao\MovimientosDAO.class
 model\Cuenta.class
-utils\Utils.class
-servlets\Movimientos$1.class
 filters\Codificacion.class
-=======
-dao\MovimientosDAO.class
-utils\Utils.class
->>>>>>> 447eceb4a4fcf116639422a8478df684086272cf
 model\Movimiento.class
-servlets\Login.class
-servlets\User.class
+Exceptions\CuentaFormatoInvalidoException.class
 filters\Cors.class
-servlets\Accounts.class
-utils\PasswordHash.class
-filters\ParseData.class
 services\UsersServices.class
-dao\DBConnection.class
-config\ConfigListener.class
-Exceptions\CuentaNoEncontradaException.class
-dao\UsersDAO.class
+model\Cliente.class
 servlets\Login$1.class
+servlets\Cuentas.class
 config\Configuration.class
 model\User.class
-servlets\Movimientos.class
-<<<<<<< HEAD
 dao\CuentasDAO.class
-=======
->>>>>>> 447eceb4a4fcf116639422a8478df684086272cf
+model\FiltrarMovimientos.class
+utils\Utils.class
+servlets\Movimientos$1.class
+servlets\Login.class
+utils\PasswordHash.class
+filters\ParseData.class
+dao\DBConnection.class
+config\ConfigListener.class
+services\CuentasServices.class
+Exceptions\CuentaNoEncontradaException.class
+dao\UsersDAO.class
+servlets\Movimientos.class
 services\MovementsServices.class

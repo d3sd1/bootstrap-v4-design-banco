@@ -12,3 +12,9 @@ function Movimiento(numeroCuenta,fecha,descripcion,importe)
     this.descripcion = descripcion;
     this.importe = importe;
 }
+function Cuenta(numeroCuenta,saldo,titulares)
+{
+    this.numeroCuenta = numeroCuenta;
+    this.saldo = saldo;
+    this.titulares = titulares;
+}

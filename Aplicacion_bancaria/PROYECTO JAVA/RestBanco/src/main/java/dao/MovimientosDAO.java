@@ -3,6 +3,8 @@ package dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.transaction.Transactional;
+import model.Cuenta;
 import model.FiltrarMovimientos;
 import model.Movimiento;
 import org.springframework.dao.DataAccessException;
@@ -13,6 +15,7 @@ public class MovimientosDAO
 
     private final String SQL_QUERY_GET_MOVIMIENTOS = "SELECT numero_cuenta,fecha,descripcion,importe FROM movimientos";
     private final String SQL_QUERY_GET_MOVIMIENTOS_FILTRADOS = "SELECT numero_cuenta,fecha,descripcion,importe FROM movimientos WHERE numero_cuenta=? AND fecha BETWEEN ? AND ?";
+    private final String SQL_QUERY_DEL_MOVIMIENTOS = "DELETE FROM movimientos WHERE numero_cuenta=?";
 
     public List<Movimiento> getAllMovimientos()
     {
@@ -57,5 +60,22 @@ public class MovimientosDAO
             
         }
         return movimientos;
+    }
+    @Transactional
+    public boolean deleteMovimientos(Cuenta cuenta)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_DEL_MOVIMIENTOS, cuenta.getNumeroCuenta());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            e.printStackTrace();
+            success = false;
+        }
+        return success;
     }
 }

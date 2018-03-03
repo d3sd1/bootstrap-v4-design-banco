@@ -1,10 +1,12 @@
 package model;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class Cuenta {
     private String numeroCuenta;
-    private String dni1;
-    private String dni2;
     private double saldo;
+    private List<Cliente> titulares;
 
     public String getNumeroCuenta()
     {
@@ -16,26 +18,6 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public String getDni1()
-    {
-        return dni1;
-    }
-
-    public void setDni1(String dni1)
-    {
-        this.dni1 = dni1;
-    }
-
-    public String getDni2()
-    {
-        return dni2;
-    }
-
-    public void setDni2(String dni2)
-    {
-        this.dni2 = dni2;
-    }
-
     public double getSaldo()
     {
         return saldo;
@@ -45,5 +27,16 @@ public class Cuenta {
     {
         this.saldo = saldo;
     }
+
+    public List<Cliente> getTitulares()
+    {
+        return titulares;
+    }
+
+    public void setTitulares(List<Cliente> titulares)
+    {
+        this.titulares = titulares;
+    }
+    
     
 }
