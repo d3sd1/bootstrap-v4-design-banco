@@ -24,40 +24,71 @@ public class Configuration {
         }
         return config;
     }
-    private String urlDB;
-    private String driverDB;
-    private String userDB;
-    private String passDB;
+    private String mysqlHost;
+    private String mysqlPort;
+    private String mysqlUser;
+    private String mysqlPass;
+    private String mysqlDatabase;
 
-    public String getUrlDB() {
-        return urlDB;
+    public static Configuration getConfig()
+    {
+        return config;
     }
 
-    public void setUrlDB(String urlDB) {
-        this.urlDB = urlDB;
+    public static void setConfig(Configuration config)
+    {
+        Configuration.config = config;
     }
 
-    public String getDriverDB() {
-        return driverDB;
+    public String getMysqlHost()
+    {
+        return mysqlHost;
     }
 
-    public void setDriverDB(String driverDB) {
-        this.driverDB = driverDB;
+    public void setMysqlHost(String mysqlHost)
+    {
+        this.mysqlHost = mysqlHost;
     }
 
-    public String getUserDB() {
-        return userDB;
+    public String getMysqlPort()
+    {
+        return mysqlPort;
     }
 
-    public void setUserDB(String userDB) {
-        this.userDB = userDB;
+    public void setMysqlPort(String mysqlPort)
+    {
+        this.mysqlPort = mysqlPort;
     }
 
-    public String getPassDB() {
-        return passDB;
+    public String getMysqlUser()
+    {
+        return mysqlUser;
     }
 
-    public void setPassDB(String passDB) {
-        this.passDB = passDB;
+    public void setMysqlUser(String mysqlUser)
+    {
+        this.mysqlUser = mysqlUser;
     }
+
+    public String getMysqlPass()
+    {
+        return mysqlPass;
+    }
+
+    public void setMysqlPass(String mysqlPass)
+    {
+        this.mysqlPass = mysqlPass;
+    }
+
+    public String getMysqlDatabase()
+    {
+        return mysqlDatabase;
+    }
+
+    public void setMysqlDatabase(String mysqlDatabase)
+    {
+        this.mysqlDatabase = mysqlDatabase;
+    }
+    
+    
 }

@@ -1,4 +1,5 @@
-driverDB: com.mysql.jdbc.Driver
-urlDB: jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11223846?useSSL=false
-userDB: sql11223846
-passDB: YNhfrWcljK
+mysqlHost: sql11.freemysqlhosting.net
+mysqlPort: 3306
+mysqlUser: sql11223846
+mysqlPass: YNhfrWcljK
+mysqlDatabase: sql11223846

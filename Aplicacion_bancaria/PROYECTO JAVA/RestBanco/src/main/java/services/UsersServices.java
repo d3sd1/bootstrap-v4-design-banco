@@ -3,6 +3,7 @@ package services;
 import dao.UsersDAO;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 import model.User;
 import utils.PasswordHash;
 
@@ -44,5 +45,29 @@ public class UsersServices {
             validToken = true;
         }
         return validToken;
+    }
+    public List<User> getAllUsuarios()
+    {
+        UsersDAO dao = new UsersDAO();
+        return dao.getAllUsers();
+    }
+    public User addUsuario(User user) throws Exception
+    {
+        UsersDAO dao = new UsersDAO();
+        user.setPassword(PasswordHash.getInstance().createHash(user.getPassword()));
+        return dao.addUsuario(user);
+    }
+    public boolean modUsuario(User user) throws Exception
+    {
+        UsersDAO dao = new UsersDAO();
+        user.setPassword(PasswordHash.getInstance().createHash(user.getPassword()));
+        return dao.modUsuario(user);
+    }
+    public boolean delUsuario(int id) throws Exception
+    {
+        UsersDAO dao = new UsersDAO();
+        User user = new User();
+        user.setId(id);
+        return dao.delUsuario(user);
     }
 }

@@ -11,10 +11,13 @@ servlets\Cuentas.class
 config\Configuration.class
 model\User.class
 dao\CuentasDAO.class
+servlets\Usuarios$1.class
 model\FiltrarMovimientos.class
+servlets\Usuarios.class
 utils\Utils.class
 servlets\Movimientos$1.class
 servlets\Login.class
+servlets\Usuarios$2.class
 utils\PasswordHash.class
 filters\ParseData.class
 dao\DBConnection.class

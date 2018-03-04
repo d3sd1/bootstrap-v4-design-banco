@@ -11,67 +11,91 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-public class DBConnection {
+public class DBConnection
+{
 
-    public DBConnection() {
+    public DBConnection()
+    {
 
     }
     private static DBConnection dbconection = null;
 
-    public static DBConnection getInstance(){
+    public static DBConnection getInstance()
+    {
         if (dbconection == null)
+        {
             dbconection = new DBConnection();
-       
+        }
+
         return dbconection;
     }
-    
-    public Connection getConnection() throws Exception {
-        Class.forName(Configuration.getInstance().getDriverDB());
+
+    public Connection getConnection() throws Exception
+    {
+        Class.forName("com.mysql.jdbc.Driver");
         Connection connection = null;
 
         connection = DriverManager.getConnection(
-          Configuration.getInstance().getUrlDB(),
-          Configuration.getInstance().getUserDB(),
-          Configuration.getInstance().getPassDB());
+                "jdbc:mysql://" + Configuration.getInstance().getMysqlHost() + ":" + Configuration.getInstance().getMysqlPort() + "/" + Configuration.getInstance().getMysqlDatabase() + "?useSSL=false&useUnicode=true&characterEncoding=utf-8",
+                Configuration.getInstance().getMysqlUser(),
+                Configuration.getInstance().getMysqlPass());
 
         return connection;
     }
 
-    public DataSource getDataSource() {
+    public DataSource getDataSource()
+    {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(Configuration.getInstance().getDriverDB());
-        dataSource.setUrl(Configuration.getInstance().getUrlDB());
-        dataSource.setUsername(Configuration.getInstance().getUserDB());
-        dataSource.setPassword(Configuration.getInstance().getPassDB());
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://" + Configuration.getInstance().getMysqlHost() + ":" + Configuration.getInstance().getMysqlPort() + "/" + Configuration.getInstance().getMysqlDatabase() + "?useSSL=false&useUnicode=true&characterEncoding=utf-8");
+        dataSource.setUsername(Configuration.getInstance().getMysqlUser());
+        dataSource.setPassword(Configuration.getInstance().getMysqlPass());
 
         return dataSource;
     }
 
-    public void closeCon(Connection connection) {
-        try {
-            if (connection != null) {
+    public void closeCon(Connection connection)
+    {
+        try
+        {
+            if (connection != null)
+            {
                 connection.close();
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void closeStmt(Statement statement) {
-        try {
-            if (statement != null) {
+
+    public void closeStmt(Statement statement)
+    {
+        try
+        {
+            if (statement != null)
+            {
                 statement.close();
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void closeStmt(PreparedStatement statement) {
-        try {
-            if (statement != null) {
+
+    public void closeStmt(PreparedStatement statement)
+    {
+        try
+        {
+            if (statement != null)
+            {
                 statement.close();
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
