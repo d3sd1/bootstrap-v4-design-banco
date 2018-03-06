@@ -7,6 +7,7 @@ import java.util.List;
 import model.User;
 import org.springframework.transaction.annotation.Transactional;
 import utils.PasswordHash;
+import utils.Utils;
 
 public class UsersServices {
     public User doLogin(User loginUser)
@@ -29,10 +30,13 @@ public class UsersServices {
             Si el login va bien devuelve el token de inicio de sesión
             y se guarda en el local storage.
             */
-            String token = dao.generateLoginToken(loginUser);
-            loginUser.setToken(token);
+            Utils utils = new Utils();
+            String token = utils.generateUserToken(foundUser);
+            foundUser.setToken(token);
+            System.out.println("USERTOKEN " + foundUser.getToken());
+            foundUser = dao.updateUserToken(foundUser);
         }
-        return loginUser;
+        return foundUser;
     }
     public boolean checkToken(String token)
     {

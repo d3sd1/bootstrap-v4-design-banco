@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
+import utils.Constantes;
 
 @WebFilter(filterName = "Cors", urlPatterns =
 {
@@ -30,8 +31,8 @@ public class Cors implements Filter
     }
 
     private void addCorsHeader(HttpServletResponse response){
-        //TODO: externalize the Allow-Origin
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        /* Si la petición no es del cliente oficial, por defecto la rechaza. */
+        response.addHeader("Access-Control-Allow-Origin", Constantes.CLIENTE_OFICIAL_BANCO_URL);
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
         response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
         response.addHeader("Access-Control-Max-Age", "1728000");

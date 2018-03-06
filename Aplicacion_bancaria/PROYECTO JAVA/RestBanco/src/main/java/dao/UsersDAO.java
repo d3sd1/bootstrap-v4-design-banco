@@ -17,7 +17,7 @@ import utils.Utils;
 public class UsersDAO
 {
 
-    private final String SQL_QUERY_GET_USER_DNI = "SELECT nombre,apellidos,token,pass FROM usuarios WHERE dni=?";
+    private final String SQL_QUERY_GET_USER_DNI = "SELECT dni,nombre,apellidos,token,pass FROM usuarios WHERE dni=?";
     private final String SQL_QUERY_GET_USER_TOKEN = "SELECT id,dni,nombre,apellidos,token,pass FROM usuarios WHERE token=?";
     private final String SQL_QUERY_UPDATE_USER_TOKEN = "UPDATE usuarios SET token=? WHERE dni=?";
     private final String SQL_QUERY_GET_USERS = "SELECT id,nombre,apellidos,dni FROM usuarios";
@@ -33,10 +33,11 @@ public class UsersDAO
             user = jtm.queryForObject(SQL_QUERY_GET_USER_DNI, (ResultSet rs, int rowNum) ->
             {
                 User foundUser = new User();
-                foundUser.setName(rs.getString(1));
-                foundUser.setSurnames(rs.getString(2));
-                foundUser.setToken(rs.getString(3));
-                foundUser.setPassword(rs.getString(4));
+                foundUser.setDni(rs.getString(1));
+                foundUser.setName(rs.getString(2));
+                foundUser.setSurnames(rs.getString(3));
+                foundUser.setToken(rs.getString(4));
+                foundUser.setPassword(rs.getString(5));
                 return foundUser;
             }, user.getDni());
         }
@@ -70,25 +71,27 @@ public class UsersDAO
         return user;
     }
 
-    public String generateLoginToken(User user)
+    public User updateUserToken(User user)
     {
-        Utils utils = new Utils();
-        String token = utils.randomAlphaNumeric(95);
-
         try
         {
+            System.out.println("user token: " + user.getToken());
+            System.out.println("user dni: " + user.getDni());
             JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
-            if (jtm.update(SQL_QUERY_UPDATE_USER_TOKEN, token, user.getDni()) == 0)
+            int rows = jtm.update(SQL_QUERY_UPDATE_USER_TOKEN, user.getToken(), user.getDni());
+            System.out.println("ROWS AFF " + rows);
+            if (rows == 0)
             {
-                token = "";
+                user.setToken("");
             }
         }
         catch (Exception ex)
         {
-            token = "";
+            ex.printStackTrace();
+            user.setToken("");
         }
 
-        return token;
+        return user;
     }
 
     public List<User> getAllUsers()

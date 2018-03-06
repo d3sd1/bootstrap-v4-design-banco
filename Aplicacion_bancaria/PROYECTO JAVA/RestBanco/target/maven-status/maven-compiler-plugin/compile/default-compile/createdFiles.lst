@@ -1,3 +1,4 @@
+filters\ApiKeyChecker.class
 dao\MovimientosDAO.class
 model\Cuenta.class
 filters\Codificacion.class
@@ -8,6 +9,7 @@ services\UsersServices.class
 model\Cliente.class
 servlets\Login$1.class
 servlets\Cuentas.class
+utils\Constantes.class
 config\Configuration.class
 model\User.class
 dao\CuentasDAO.class
@@ -16,6 +18,7 @@ model\FiltrarMovimientos.class
 servlets\Usuarios.class
 utils\Utils.class
 servlets\Movimientos$1.class
+dao\ApiSpringJDBC.class
 servlets\Login.class
 servlets\Usuarios$2.class
 utils\PasswordHash.class
@@ -26,5 +29,6 @@ services\CuentasServices.class
 Exceptions\CuentaNoEncontradaException.class
 dao\UsersDAO$1.class
 dao\UsersDAO.class
+model\ApiKey.class
 servlets\Movimientos.class
 services\MovementsServices.class

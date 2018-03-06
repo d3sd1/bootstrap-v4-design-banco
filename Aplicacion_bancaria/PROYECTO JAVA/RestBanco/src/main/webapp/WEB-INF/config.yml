@@ -3,3 +3,5 @@ mysqlPort: 3306
 mysqlUser: sql11223846
 mysqlPass: YNhfrWcljK
 mysqlDatabase: sql11223846
+apiIntervalSeconds: 600
+apiMaxIntervalCalls: 50

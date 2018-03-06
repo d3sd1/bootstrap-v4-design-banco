@@ -4,6 +4,22 @@
         <description>ServletContextListener</description>
         <listener-class>config.ConfigListener</listener-class>
     </listener>
+    <filter-mapping>
+        <filter-name>Codificacion</filter-name>
+        <url-pattern />
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Cors</filter-name>
+        <url-pattern />
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ApiKeyChecker</filter-name>
+        <url-pattern />
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ParseData</filter-name>
+        <url-pattern />
+    </filter-mapping>
     <session-config>
         <session-timeout>
             30

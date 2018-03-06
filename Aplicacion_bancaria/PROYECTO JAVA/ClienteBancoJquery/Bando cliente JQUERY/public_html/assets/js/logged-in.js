@@ -11,7 +11,8 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
     $(".tap-target").tapTarget("open");
     $('.collapsible').collapsible();
-    getUserInfo();
+    printUserInfo();
+    preventExpiredSession();
 });
 /* 
  * Se utiliza data-trigger ya que es un estándar de atributos
@@ -22,22 +23,30 @@ $(document).ready(function () {
  * La función de abajo desconecta al usuario de la sesión.
  */
 $('[data-trigger="logout"]').bind("click", function () {
+   logout(); 
+});
+function logout()
+{
     Materialize.toast("Te has desconectado correctamente.", 4000);
     localStorage.removeItem("token");
     window.location.replace("login.html");
-});
+}
 /* Reemplazar los contenidos por username */
-
-function getUserInfo()
+function preventExpiredSession()
 {
-    /* aqui falta coger la info del usuario
-     $.ajax({
-     url: API_REST_URL + "/login/" + token,
-     type: "GET",
-     success: function (result) {
-     replaceVariableView()
-     }
-     }); */
+    var user = getTokenUser(),
+        exp = new Date(0),
+        now = (new Date()).getTime();
+    exp.setUTCSeconds(user.exp)
+    if(exp.getTime() < now)
+    {
+        logout();
+    }
+}
+function printUserInfo()
+{
+    var user = getTokenUser();
+    replaceVariableView("user_name",user.name);
 }
 function checkBankAccountFormat(bankAccount)
 {

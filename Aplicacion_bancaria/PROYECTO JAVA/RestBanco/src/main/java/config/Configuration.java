@@ -29,6 +29,8 @@ public class Configuration {
     private String mysqlUser;
     private String mysqlPass;
     private String mysqlDatabase;
+    private int apiIntervalSeconds;
+    private int apiMaxIntervalCalls;
 
     public static Configuration getConfig()
     {
@@ -88,6 +90,26 @@ public class Configuration {
     public void setMysqlDatabase(String mysqlDatabase)
     {
         this.mysqlDatabase = mysqlDatabase;
+    }
+
+    public int getApiIntervalSeconds()
+    {
+        return apiIntervalSeconds;
+    }
+
+    public void setApiIntervalSeconds(int apiIntervalSeconds)
+    {
+        this.apiIntervalSeconds = apiIntervalSeconds;
+    }
+
+    public int getApiMaxIntervalCalls()
+    {
+        return apiMaxIntervalCalls;
+    }
+
+    public void setApiMaxIntervalCalls(int apiMaxIntervalCalls)
+    {
+        this.apiMaxIntervalCalls = apiMaxIntervalCalls;
     }
     
     
