@@ -4,15 +4,10 @@ import Exceptions.CuentaFormatoInvalidoException;
 import Exceptions.CuentaNoEncontradaException;
 import dao.CuentasDAO;
 import dao.MovimientosDAO;
-import dao.UsersDAO;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import java.util.List;
 import model.Cliente;
 import model.Cuenta;
-import model.User;
-import utils.PasswordHash;
+import org.springframework.transaction.annotation.Transactional;
 import utils.Utils;
 
 public class CuentasServices
@@ -46,6 +41,7 @@ public class CuentasServices
         }
     }
 
+    @Transactional
     public boolean deleteCuentaMovimientos(String numeroCuenta) throws CuentaFormatoInvalidoException
     {
         CuentasDAO cDao = new CuentasDAO();

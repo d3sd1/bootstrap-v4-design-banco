@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import model.User;
+import org.springframework.transaction.annotation.Transactional;
 import utils.PasswordHash;
 
 public class UsersServices {
@@ -51,18 +52,21 @@ public class UsersServices {
         UsersDAO dao = new UsersDAO();
         return dao.getAllUsers();
     }
+    @Transactional
     public User addUsuario(User user) throws Exception
     {
         UsersDAO dao = new UsersDAO();
         user.setPassword(PasswordHash.getInstance().createHash(user.getPassword()));
         return dao.addUsuario(user);
     }
+    @Transactional
     public boolean modUsuario(User user) throws Exception
     {
         UsersDAO dao = new UsersDAO();
         user.setPassword(PasswordHash.getInstance().createHash(user.getPassword()));
         return dao.modUsuario(user);
     }
+    @Transactional
     public boolean delUsuario(int id) throws Exception
     {
         UsersDAO dao = new UsersDAO();

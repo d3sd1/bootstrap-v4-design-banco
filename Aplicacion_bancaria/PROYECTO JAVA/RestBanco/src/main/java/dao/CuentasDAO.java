@@ -2,9 +2,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import javax.transaction.Transactional;
 import model.Cliente;
 import model.Cuenta;
 import org.springframework.dao.DataAccessException;
@@ -73,7 +71,7 @@ public class CuentasDAO
         cuenta.setTitulares(titulares);
         return cuenta;
     }
-    @Transactional
+    
     public boolean deleteCuenta(Cuenta cuenta)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
@@ -89,7 +87,7 @@ public class CuentasDAO
         }
         return success;
     }
-    @Transactional
+    
     public boolean reducirCuentasTitular(Cliente cliente)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
@@ -105,7 +103,7 @@ public class CuentasDAO
         }
         return success;
     }
-    @Transactional
+    
     public boolean deleteCliente(Cliente cliente)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
@@ -121,7 +119,7 @@ public class CuentasDAO
         }
         return success;
     }
-    @Transactional
+    
     public boolean deleteClientesCuenta(Cuenta cuenta)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());

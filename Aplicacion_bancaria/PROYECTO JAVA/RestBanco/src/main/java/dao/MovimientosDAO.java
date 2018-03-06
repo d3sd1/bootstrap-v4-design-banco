@@ -3,7 +3,6 @@ package dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import javax.transaction.Transactional;
 import model.Cuenta;
 import model.FiltrarMovimientos;
 import model.Movimiento;
@@ -61,7 +60,7 @@ public class MovimientosDAO
         }
         return movimientos;
     }
-    @Transactional
+    
     public boolean deleteMovimientos(Cuenta cuenta)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());

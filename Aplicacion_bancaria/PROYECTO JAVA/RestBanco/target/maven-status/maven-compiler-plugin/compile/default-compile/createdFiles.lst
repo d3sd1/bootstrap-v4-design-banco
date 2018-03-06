@@ -24,6 +24,7 @@ dao\DBConnection.class
 config\ConfigListener.class
 services\CuentasServices.class
 Exceptions\CuentaNoEncontradaException.class
+dao\UsersDAO$1.class
 dao\UsersDAO.class
 servlets\Movimientos.class
 services\MovementsServices.class
