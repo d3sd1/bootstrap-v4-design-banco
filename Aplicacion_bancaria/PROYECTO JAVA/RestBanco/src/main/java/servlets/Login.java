@@ -37,7 +37,9 @@ public class Login extends HttpServlet
             String pathInfo = request.getPathInfo();
             String[] pathParts = pathInfo.split("/");
             String token = pathParts[1];
+            System.out.println("tokeeennn " + token);
             boolean foundToken = srv.checkToken(token);
+            System.out.println("found token:; " + foundToken);
             if (foundToken)
             {
                 response.setStatus(200);

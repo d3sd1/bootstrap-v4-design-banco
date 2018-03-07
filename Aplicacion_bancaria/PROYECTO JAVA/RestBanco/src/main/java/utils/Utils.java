@@ -3,7 +3,9 @@ package utils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.SecureRandom;
+import java.time.Instant;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import model.User;
 
@@ -14,22 +16,19 @@ public class Utils
 
     public String generateUserToken(User user)
     {
-        Calendar expire = Calendar.getInstance();
-        expire.add(Calendar.MINUTE, Constantes.MINUTOS_EXPIRACION_LOGIN_TOKEN);
-
-        String tokenaso;
-        tokenaso = Jwts.builder()
+        Date now = new Date();
+        Date expiration = new Date(now.getTime() + Constantes.MINUTOS_EXPIRACION_LOGIN_TOKEN * 60 * 1000);
+        String token;
+        token = Jwts.builder()
                 .setIssuer("BBVA")
                 .setSubject("INTERNAL_LOGIN")
                 .claim("name", user.getName() + " " + user.getSurnames())
                 .claim("dni", user.getDni())
-                // Fri Jun 24 2016 15:33:42 GMT-0400 (EDT)
-                .setIssuedAt(Calendar.getInstance().getTime())
-                // Sat Jun 24 2116 15:33:42 GMT-0400 (EDT)
-                .setExpiration(expire.getTime())
+                .setIssuedAt(now)
+                .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, Constantes.CLAVE_PRIVADA_TOKENS)
                 .compact();
-        return tokenaso;
+        return token;
     }
 
     public String randomAlphaNumeric(int count)

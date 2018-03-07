@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import services.UsersServices;
 import utils.Constantes;
 
+/* Comprobar el origin para las urls del rest que requierean de login y que no sean /login si el origin es la web local */
 @WebFilter(filterName = "CheckOriginLogin", urlPatterns =
 {
     "/cuenta",
@@ -60,14 +61,13 @@ public class CheckOriginLogin implements Filter
             if (null != origin && origin.equals(Constantes.CLIENTE_OFICIAL_BANCO_URL))
             {
                 String token = request.getHeader("token");
-                if (null != token && "" != token)
+                if (null != token && !token.equals(""))
                 {
                     UsersServices srv = new UsersServices();
-                    System.out.println(token);
                     
                     if (srv.checkToken(token))
                     {
-                        System.out.println("token valido");
+                        chain.doFilter(request, response);
                     }
                     else
                     {

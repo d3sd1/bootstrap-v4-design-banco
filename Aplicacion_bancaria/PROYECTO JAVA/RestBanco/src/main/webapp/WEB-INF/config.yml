@@ -1,7 +1,7 @@
-mysqlHost: sql11.freemysqlhosting.net
-mysqlPort: 3306
-mysqlUser: sql11223846
-mysqlPass: YNhfrWcljK
-mysqlDatabase: sql11223846
+mysqlHost: db4free.net
+mysqlPort: 3307
+mysqlUser: appbanco
+mysqlPass: appbanco
+mysqlDatabase: appbanco
 apiIntervalSeconds: 600
 apiMaxIntervalCalls: 50

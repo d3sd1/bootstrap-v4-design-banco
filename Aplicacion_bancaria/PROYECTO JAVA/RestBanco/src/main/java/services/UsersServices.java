@@ -6,10 +6,14 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import model.User;
+import static oracle.jrockit.jfr.events.Bits.longValue;
 import org.springframework.transaction.annotation.Transactional;
 import utils.Constantes;
 import utils.PasswordHash;
@@ -37,11 +41,11 @@ public class UsersServices
             /*
             Si el login va bien devuelve el token de inicio de sesión
             y se guarda en el local storage.
-             */
+            */
             Utils utils = new Utils();
             String token = utils.generateUserToken(foundUser);
             foundUser.setToken(token);
-            foundUser = dao.updateUserToken(foundUser);
+            dao.updateUserToken(foundUser);
         }
         return foundUser;
     }
@@ -52,26 +56,24 @@ public class UsersServices
         boolean validToken = false;
         User user = new User();
         user.setToken(token);
+        user = dao.getUserByToken(user);
 
         Jws<Claims> claims = Jwts.parser()
                 .setSigningKey(Constantes.CLAVE_PRIVADA_TOKENS)
                 .parseClaimsJws(token);
-        String dni = claims.getBody().get("dni").toString();
-        int fechaExpiracion = Integer.parseInt(claims.getBody().get("exp").toString());
-
-        user.setDni(dni);
-        User foundUser = dao.getUserByToken(user);
+        String tokenDni = claims.getBody().get("dni").toString();
+        long fechaExpiracion = Long.parseLong(claims.getBody().get("exp").toString());
+        Instant expiracion = Instant.ofEpochSecond(fechaExpiracion);
+        Instant now = Instant.now();
         /*
         Si se encuentra algún usuario
         y el dni coincide con el del token
         y el token no está caducado,
         el token es válido.
          */
-        Calendar cal = GregorianCalendar.getInstance();
-        cal.setTimeInMillis(fechaExpiracion);
-        if (0 != foundUser.getId()
-                && foundUser.getDni().equals(user.getDni())
-                && cal.before(Calendar.getInstance().getTime()))
+        if (0 != user.getId()
+                && user.getDni().equals(tokenDni)
+                && now.isBefore(expiracion))
         {
             validToken = true;
         }

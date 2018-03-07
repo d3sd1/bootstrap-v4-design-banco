@@ -1,9 +1,4 @@
 - subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
 - subir el proyecto con todos los codigos y la db
-- (VALIDAR JWT EN CADA LLAMADA A LA API!!!!!!!!!!!!!!!!!!!!!!!!
-que si la url es la local valide el usuario. que si no, solo haga el filtro.
-QUE NO HAGA EL FILTRO SOBRE LOGIN!!!!!!!!!!!!!!!!)
-PREGUNTAR SI HACER ESO, YA QUE PARA LLAMAR A AL URL DE MOVIMIENTOS DEBERIA ESTAR CONECTADO^?
-
-
-- acabar de validar el login con el JWT. (funcion checkToken users services).
+- cliente no oficial del banco (php, solo ingresar y transferir dinero)
+- REVISAR QUE TODO FUNCIONE

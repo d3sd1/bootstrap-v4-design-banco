@@ -17,7 +17,7 @@ import utils.Utils;
 public class UsersDAO
 {
 
-    private final String SQL_QUERY_GET_USER_DNI = "SELECT dni,nombre,apellidos,token,pass FROM usuarios WHERE dni=?";
+    private final String SQL_QUERY_GET_USER_DNI = "SELECT dni,nombre,apellidos,token,pass,id FROM usuarios WHERE dni=?";
     private final String SQL_QUERY_GET_USER_TOKEN = "SELECT id,dni,nombre,apellidos,token,pass FROM usuarios WHERE token=?";
     private final String SQL_QUERY_UPDATE_USER_TOKEN = "UPDATE usuarios SET token=? WHERE dni=?";
     private final String SQL_QUERY_GET_USERS = "SELECT id,nombre,apellidos,dni FROM usuarios";
@@ -38,6 +38,7 @@ public class UsersDAO
                 foundUser.setSurnames(rs.getString(3));
                 foundUser.setToken(rs.getString(4));
                 foundUser.setPassword(rs.getString(5));
+                foundUser.setId(rs.getInt(6));
                 return foundUser;
             }, user.getDni());
         }
@@ -57,10 +58,11 @@ public class UsersDAO
             {
                 User foundUser = new User();
                 foundUser.setId(rs.getInt(1));
-                foundUser.setName(rs.getString(2));
-                foundUser.setSurnames(rs.getString(3));
-                foundUser.setToken(rs.getString(4));
-                foundUser.setPassword(rs.getString(5));
+                foundUser.setDni(rs.getString(2));
+                foundUser.setName(rs.getString(3));
+                foundUser.setSurnames(rs.getString(4));
+                foundUser.setToken(rs.getString(5));
+                foundUser.setPassword(rs.getString(6));
                 return foundUser;
             }, user.getToken());
         }
