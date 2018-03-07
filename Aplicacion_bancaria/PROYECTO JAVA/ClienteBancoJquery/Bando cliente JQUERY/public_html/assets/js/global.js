@@ -1,4 +1,12 @@
 const API_REST_URL = "http://localhost:8000";
+$.ajaxSetup({
+    error: function (xhr) {
+        if(xhr.status === 407) //token caducado!!
+        {
+            logout();
+        }
+    }
+});
 function isUserConnected()
 {
     var token = localStorage.getItem("token");
