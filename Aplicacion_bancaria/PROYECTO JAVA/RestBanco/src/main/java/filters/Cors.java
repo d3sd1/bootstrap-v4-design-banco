@@ -38,9 +38,10 @@ public class Cors implements Filter
         Si la petición no es del cliente oficial, por defecto el CORS la limita. Si su api-key es válida, se lo permite.
         Recordemos que la aplicación oficial no hace uso de api-key. El resto sí.
         */
-        response.addHeader("Access-Control-Allow-Origin", Constantes.CLIENTE_OFICIAL_BANCO_URL);
+        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
         response.addHeader("Access-Control-Allow-Headers", "*");
+        response.addHeader("Access-Control-Request-Headers", "*");
         response.addHeader("Access-Control-Max-Age", "1728000");
     }
 

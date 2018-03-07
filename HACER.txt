@@ -2,3 +2,5 @@
 - subir el proyecto con todos los codigos y la db
 - cliente no oficial del banco (php, solo ingresar y transferir dinero)
 - REVISAR QUE TODO FUNCIONE
+- quitar sout,console.log,etc
+- comprobar accesibilidad y checkear responsive etc. del diseño de la app principal

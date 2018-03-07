@@ -46,25 +46,35 @@
         <div class="section white" id="content-container">
             <div class="row container center-align">
                 <h2>Ingresos y reintegros</h2>
-                <form id="closeAccount">
+                <form id="putTransation">
                     <div class="row ">
                         <div class="switch col s6 offset-s3">
                             <label>
                                 Ingreso
-                                <input type="checkbox">
+                                <input type="checkbox" name="opType">
                                 <span class="lever"></span>
                                 Reintegro
                             </label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6 offset-s3">
+                        <div class="input-field col s8 m3 offset-m3">
                             <input name="bank_account" autocomplete="off" type="text" pattern="[0-9]{10}" maxlength="10" class="validate center-align">
                             <label class="active" for="bank_account">Número de cuenta</label>
                         </div>
+                        <div class="input-field col s4 m3">
+                            <input name="amount" type="number" class="validate center-align">
+                            <label class="active" for="amount">Cantidad de la operación</label>
+                        </div>
                     </div>
                     <div class="row">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">arrow_forward</i>Comprobar cuenta</button>
+                        <div class="input-field col s12 m6 offset-m3">
+                            <textarea name="description" class="materialize-textarea"></textarea>
+                            <label for="description">Descripción de la operación</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">arrow_forward</i>Confirmar</button>
                     </div>
                 </form>
             </div>
@@ -116,61 +126,15 @@
                 </div>
             </div>
         </div>
-        <div id="infoCuenta" class="modal">
-            <div class="modal-content center-align">
-                <h4>Información de la cuenta</h4>
-                <div class="row" id="closeAccountErrorMessage">
-                    <div class="col s12 m6 offset-m3">
-                        <div class="card red darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">La cuenta no se puede cerrar</span>
-                                <p>Para poder cerrar la cuenta, esta no debe tener fondos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12 m4">
-                                <i class="material-icons prefix">account_balance_wallet</i>
-                                <input name="numero_cuenta" type="text" readonly>
-                                <label for="numero_cuenta">Número de cuenta</label>
-                            </div>
-                            <div class="input-field col s12 m4">
-                                <i class="material-icons prefix">attach_money</i>
-                                <input name="saldo" type="text" readonly>
-                                <label for="saldo">Saldo</label>
-                            </div>
-                            <div class="input-field col s12 m4">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input name="titulares" type="number" readonly>
-                                <label for="titulares">Número de titulares</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="collapsible popout" data-collapsible="accordion" id="actualAccountClients">
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="row" id="noclientesAccountErrorMessage">
-                    <div class="col s12 m6 offset-m3">
-                        <div class="card red darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">La cuenta no posee titulares</span>
-                                <p>La cuenta no tiene titulares adheridos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-                    <button id="cerrarCuenta" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar cuenta</button>
-                </div>
+        <!-- Modal Structure -->
+        <div id="infoTransaccion" class="modal">
+            <div class="modal-content">
+                <h4>Conformidad de la operación</h4>
+                <p data-text="Se procede al <b>{{type}}</b> de <b>{{amount}}€</b> a la cuenta <b>{{account}}</b>. Descripción de la operación: {{description}}"></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar operación</a>
+                <a id="doTransaction" class="waves-effect waves-green btn-flat">Confirmar operación</a>
             </div>
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -178,6 +142,6 @@
         <script type="text/javascript" src="assets/js/models.js"></script>
         <script type="text/javascript" src="assets/js/global.js"></script>
         <script type="text/javascript" src="assets/js/logged-in.js"></script>
-        <script type="text/javascript" src="assets/js/close-account.js"></script>
+        <script type="text/javascript" src="assets/js/transactions.js"></script>
     </body>
 </html>

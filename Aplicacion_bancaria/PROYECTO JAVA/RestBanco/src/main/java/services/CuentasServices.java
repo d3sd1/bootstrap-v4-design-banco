@@ -2,6 +2,7 @@ package services;
 
 import Exceptions.CuentaFormatoInvalidoException;
 import Exceptions.CuentaNoEncontradaException;
+import dao.ClientesDAO;
 import dao.CuentasDAO;
 import dao.MovimientosDAO;
 import java.util.List;
@@ -28,7 +29,8 @@ public class CuentasServices
             if (null != cuenta.getNumeroCuenta())
             {
                 /* Devolver la cuenta con sus titulares */
-                return dao.getCuentaTitularesByNumero(cuenta);
+                cuenta.setTitulares(dao.getCuentaTitularesByNumero(cuenta));
+                return cuenta;
             }
             else
             {
@@ -45,6 +47,7 @@ public class CuentasServices
     public boolean deleteCuentaMovimientos(String numeroCuenta) throws CuentaFormatoInvalidoException
     {
         CuentasDAO cDao = new CuentasDAO();
+        ClientesDAO clDao = new ClientesDAO();
         MovimientosDAO mDao = new MovimientosDAO();
         Utils utils = new Utils();
         boolean formatoCuentaValido = utils.comprobarFormatoCuenta(numeroCuenta),
@@ -65,7 +68,7 @@ public class CuentasServices
                     sino las foráneas.
                  */
                 /* Eliminar movimientos */
-                List<Cliente> titulares = cDao.getCuentaTitularesByNumero(cuenta).getTitulares();
+                List<Cliente> titulares = cDao.getCuentaTitularesByNumero(cuenta);
                 
                 boolean cuentaDesasignada = cDao.deleteClientesCuenta(cuenta),
                         movimientosBorrados = mDao.deleteMovimientos(cuenta),
@@ -86,13 +89,13 @@ public class CuentasServices
                     titular.setConteoCuentas(titular.getConteoCuentas()-1);
                     if(titular.getConteoCuentas() <= 0)
                     {
-                        titularesBorrados = cDao.deleteCliente(titular);
+                        titularesBorrados = clDao.deleteCliente(titular);
                     }
                     /* Si no, simplemente reducir 
                     su numero de cuentas */
                     else
                     {
-                        titularesBorrados = cDao.reducirCuentasTitular(titular);
+                        titularesBorrados = clDao.reducirCuentasTitular(titular);
                     }
                 }
                 borradoSatisfactorio = cuentaDesasignada && movimientosBorrados && titularesBorrados && cuentaBorrada;

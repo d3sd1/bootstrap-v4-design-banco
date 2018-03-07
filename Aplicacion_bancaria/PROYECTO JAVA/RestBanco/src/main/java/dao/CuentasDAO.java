@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Cliente;
 import model.Cuenta;
+import model.Operacion;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -13,14 +14,46 @@ public class CuentasDAO
 
     private final String SQL_QUERY_GET_CUENTA = "SELECT numero_cuenta,saldo FROM cuentas WHERE numero_cuenta = ?";
     private final String SQL_QUERY_DEL_CUENTA = "DELETE FROM cuentas WHERE numero_cuenta=?";
-    private final String SQL_QUERY_DEL_CLIENTE = "DELETE FROM clientes WHERE dni=?";
-    private final String SQL_QUERY_UPD_CONTEOCUENTAS = "UPDATE clientes SET conteo_cuentas=? WHERE dni=?";
+    private final String SQL_QUERY_UPD_LESSSALDOCUENTA = "UPDATE cuentas SET saldo=saldo-? WHERE numero_cuenta=?";
+    private final String SQL_QUERY_UPD_MORESALDOCUENTA = "UPDATE cuentas SET saldo=saldo+? WHERE numero_cuenta=?";
     private final String SQL_QUERY_DEL_CLIENTES_CUENTA = "DELETE FROM clientes_cuentas WHERE numero_cuenta=?";
     private final String SQL_QUERY_GET_CLIENTE_BY_CUENTA = "SELECT cl.dni,cl.nombre,cl.direccion,cl.telefono,cl.email,"
             + "cl.fecha_nacimiento,cl.fecha_conexion,cl.conteo_cuentas,cl.saldo "
             + "FROM clientes_cuentas cc "
             + "JOIN clientes cl ON cc.dni=cl.dni "
             + "WHERE cc.numero_cuenta = ?";
+
+    public boolean reducirSaldoCuenta(Operacion operacion, Cuenta cuenta)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_UPD_LESSSALDOCUENTA, operacion.getAmount(), cuenta.getNumeroCuenta());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
+    
+    public boolean aumentarSaldoCuenta(Operacion operacion, Cuenta cuenta)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_UPD_MORESALDOCUENTA, operacion.getAmount(), cuenta.getNumeroCuenta());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
 
     public Cuenta getCuentaByNumero(Cuenta cuenta)
     {
@@ -42,7 +75,7 @@ public class CuentasDAO
         return cuenta;
     }
 
-    public Cuenta getCuentaTitularesByNumero(Cuenta cuenta)
+    public List<Cliente> getCuentaTitularesByNumero(Cuenta cuenta)
     {
         List<Cliente> titulares = new ArrayList<>();
         /* Añadir los titulares de la cuenta */
@@ -68,10 +101,9 @@ public class CuentasDAO
         {
             cuenta = new Cuenta();
         }
-        cuenta.setTitulares(titulares);
-        return cuenta;
+        return titulares;
     }
-    
+
     public boolean deleteCuenta(Cuenta cuenta)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
@@ -87,39 +119,8 @@ public class CuentasDAO
         }
         return success;
     }
-    
-    public boolean reducirCuentasTitular(Cliente cliente)
-    {
-        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
-        boolean success;
-        try
-        {
-            jtm.update(SQL_QUERY_UPD_CONTEOCUENTAS, cliente.getConteoCuentas(), cliente.getDni());
-            success = true;
-        }
-        catch (DataAccessException e)
-        {
-            success = false;
-        }
-        return success;
-    }
-    
-    public boolean deleteCliente(Cliente cliente)
-    {
-        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
-        boolean success;
-        try
-        {
-            jtm.update(SQL_QUERY_DEL_CLIENTE, cliente.getDni());
-            success = true;
-        }
-        catch (DataAccessException e)
-        {
-            success = false;
-        }
-        return success;
-    }
-    
+
+
     public boolean deleteClientesCuenta(Cuenta cuenta)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());

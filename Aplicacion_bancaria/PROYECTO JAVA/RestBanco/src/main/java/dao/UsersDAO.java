@@ -77,11 +77,8 @@ public class UsersDAO
     {
         try
         {
-            System.out.println("user token: " + user.getToken());
-            System.out.println("user dni: " + user.getDni());
             JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
             int rows = jtm.update(SQL_QUERY_UPDATE_USER_TOKEN, user.getToken(), user.getDni());
-            System.out.println("ROWS AFF " + rows);
             if (rows == 0)
             {
                 user.setToken("");

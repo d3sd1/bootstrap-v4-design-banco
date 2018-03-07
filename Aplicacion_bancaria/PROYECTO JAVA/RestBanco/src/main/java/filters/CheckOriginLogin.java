@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Enumeration;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -21,6 +22,7 @@ import utils.Constantes;
 {
     "/cuenta",
     "/movimientos",
+    "/operaciones",
     "/usuarios"
 })
 public class CheckOriginLogin implements Filter
@@ -73,10 +75,6 @@ public class CheckOriginLogin implements Filter
                     {
                         response.setStatus(407);
                     }
-                }
-                else
-                {
-                    response.setStatus(407);
                 }
             }
             else

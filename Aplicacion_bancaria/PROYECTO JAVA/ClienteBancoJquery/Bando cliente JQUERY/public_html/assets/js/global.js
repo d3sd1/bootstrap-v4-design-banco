@@ -1,5 +1,7 @@
 const API_REST_URL = "http://localhost:8000";
+/* Interceptor para las llamadas a la api */
 $.ajaxSetup({
+    cache: false,
     error: function (xhr) {
         if(xhr.status === 407) //token caducado!!
         {
