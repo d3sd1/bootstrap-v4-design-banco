@@ -29,8 +29,9 @@ $("#closeAccount").submit(function (e) {
         $.ajax({
             url: API_REST_URL + "/cuenta/" + accountNumber,
             type: "GET",
-            beforeSend: function ()
+            beforeSend: function (request)
             {
+                request.setRequestHeader("token", localStorage.getItem("token"));
                 $("#cargandoCuenta").modal("open");
             },
             error: function (xhr)
@@ -96,8 +97,9 @@ $("#cerrarCuenta").click(function(e){
     $.ajax({
         url: API_REST_URL + "/cuenta/" + accountNumber,
         type: "DELETE",
-        beforeSend: function ()
+        beforeSend: function (request)
         {
+            request.setRequestHeader("token", localStorage.getItem("token"));
             $("#cargandoCuenta").modal("open");
         },
         error: function (xhr)

@@ -9,6 +9,7 @@ services\UsersServices.class
 model\Cliente.class
 servlets\Login$1.class
 servlets\Cuentas.class
+filters\CheckOriginLogin.class
 utils\Constantes.class
 config\Configuration.class
 model\User.class

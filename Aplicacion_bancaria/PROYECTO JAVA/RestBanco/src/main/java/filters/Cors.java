@@ -17,31 +17,41 @@ import utils.Constantes;
 })
 public class Cors implements Filter
 {
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
-    FilterChain filterChain) throws IOException, ServletException {
+            FilterChain filterChain) throws IOException, ServletException
+    {
 
-        if(response instanceof HttpServletResponse){
-        HttpServletResponse alteredResponse = ((HttpServletResponse)response);
-        addCorsHeader(alteredResponse);
+        if (response instanceof HttpServletResponse)
+        {
+            HttpServletResponse alteredResponse = ((HttpServletResponse) response);
+            addCorsHeader(alteredResponse);
+        }
+
+        filterChain.doFilter(request, response);
     }
 
-    filterChain.doFilter(request, response);
-    }
-
-    private void addCorsHeader(HttpServletResponse response){
-        /* Si la petición no es del cliente oficial, por defecto la rechaza. */
+    private void addCorsHeader(HttpServletResponse response)
+    {
+        /* 
+        Si la petición no es del cliente oficial, por defecto el CORS la limita. Si su api-key es válida, se lo permite.
+        Recordemos que la aplicación oficial no hace uso de api-key. El resto sí.
+        */
         response.addHeader("Access-Control-Allow-Origin", Constantes.CLIENTE_OFICIAL_BANCO_URL);
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+        response.addHeader("Access-Control-Allow-Headers", "*");
         response.addHeader("Access-Control-Max-Age", "1728000");
     }
 
     @Override
-    public void destroy() {}
+    public void destroy()
+    {
+    }
 
     @Override
-    public void init(FilterConfig filterConfig)throws ServletException{}
-    
+    public void init(FilterConfig filterConfig) throws ServletException
+    {
+    }
+
 }

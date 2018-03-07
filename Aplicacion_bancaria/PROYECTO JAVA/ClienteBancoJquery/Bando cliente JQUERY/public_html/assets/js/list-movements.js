@@ -49,8 +49,9 @@ function listarMovimientos()
     $.ajax({
         url: API_REST_URL + "/movimientos",
         type: "GET",
-        beforeSend: function ()
+        beforeSend: function (request)
         {
+            request.setRequestHeader("token", localStorage.getItem("token"));
             $("#cargandoMovimientos").modal("open");
         },
         error: function ()
@@ -73,8 +74,9 @@ function filtrarMovimientos(data)
         url: API_REST_URL + "/movimientos",
         type: "POST",
         data: data,
-        beforeSend: function ()
+        beforeSend: function (request)
         {
+            request.setRequestHeader("token", localStorage.getItem("token"));
             $("#cargandoMovimientos").modal("open");
         },
         error: function (xhr)

@@ -30,12 +30,12 @@ function listarUsuarios()
     $.ajax({
         url: API_REST_URL + "/usuarios",
         type: "GET",
-        beforeSend: function ()
+        beforeSend: function (request)
         {
+            request.setRequestHeader("token", localStorage.getItem("token"));
             $("#cargandoUsuarios").modal("open");
         },
-        error: function ()
-        {
+        error: function (request, textStatus, errorThrown) {
             Materialize.toast("No se han podido cargar usuarios.", 4000);
         },
         success: function (result) {
@@ -102,8 +102,9 @@ function deleteUsuario(id)
     $.ajax({
         url: API_REST_URL + "/usuarios/" + id,
         type: "DELETE",
-        beforeSend: function ()
+        beforeSend: function (request)
         {
+            request.setRequestHeader("token", localStorage.getItem("token"));
             $("#cargandoUsuarios").modal("open");
         },
         error: function ()
@@ -140,8 +141,9 @@ $("#datosUsuario").submit(function (e) {
             url: API_REST_URL + "/usuarios",
             type: "PUT",
             data: JSON.stringify(usuario),
-            beforeSend: function ()
+            beforeSend: function (request)
             {
+                request.setRequestHeader("token", localStorage.getItem("token"));
                 $("#manageUsuario").modal("close");
                 $("#cargandoUsuarios").modal("open");
             },
@@ -171,14 +173,16 @@ $("#datosUsuario").submit(function (e) {
                 $("#cargandoUsuarios").modal("close");
             }
         });
-    } else
+    }
+    else
     {
         $.ajax({
             url: API_REST_URL + "/usuarios",
             type: "POST",
             data: JSON.stringify(usuario),
-            beforeSend: function ()
+            beforeSend: function (request)
             {
+                request.setRequestHeader("token", localStorage.getItem("token"));
                 $("#manageUsuario").modal("close");
                 $("#cargandoUsuarios").modal("open");
             },

@@ -2,8 +2,6 @@ package utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
-import java.security.Key;
 import java.security.SecureRandom;
 import java.util.Calendar;
 import java.util.Random;
@@ -16,11 +14,11 @@ public class Utils
 
     public String generateUserToken(User user)
     {
-        Key key = MacProvider.generateKey();
         Calendar expire = Calendar.getInstance();
         expire.add(Calendar.MINUTE, Constantes.MINUTOS_EXPIRACION_LOGIN_TOKEN);
 
-        String tokenaso = Jwts.builder()
+        String tokenaso;
+        tokenaso = Jwts.builder()
                 .setIssuer("BBVA")
                 .setSubject("INTERNAL_LOGIN")
                 .claim("name", user.getName() + " " + user.getSurnames())
@@ -29,7 +27,7 @@ public class Utils
                 .setIssuedAt(Calendar.getInstance().getTime())
                 // Sat Jun 24 2116 15:33:42 GMT-0400 (EDT)
                 .setExpiration(expire.getTime())
-                .signWith(SignatureAlgorithm.HS256, key)
+                .signWith(SignatureAlgorithm.HS256, Constantes.CLAVE_PRIVADA_TOKENS)
                 .compact();
         return tokenaso;
     }

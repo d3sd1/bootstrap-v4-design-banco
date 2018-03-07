@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URL;
 import java.sql.SQLException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,13 +16,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utils.Constantes;
 import model.ApiKey;
+import utils.Constantes;
 
-/**
- *
- * @author Andrei
- */
 @WebFilter(filterName = "ApiKeyChecker", urlPatterns =
 {
     "/*"
@@ -42,9 +37,7 @@ public class ApiKeyChecker implements Filter
     {
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp,
-            FilterChain chain)
-            throws IOException, ServletException
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException
     {
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpServletRequest request = (HttpServletRequest) req;
@@ -57,7 +50,8 @@ public class ApiKeyChecker implements Filter
         comprobamos api keys por que ya está autorizado
         (es el oficial). Si no, sí comprobamos la clave api.
         */
-        if (request.getHeader("origin").equals(Constantes.CLIENTE_OFICIAL_BANCO_URL))
+        String origin = request.getHeader("origin");
+        if (null != origin && origin.equals(Constantes.CLIENTE_OFICIAL_BANCO_URL))
         {
             chain.doFilter(request, response);
         }

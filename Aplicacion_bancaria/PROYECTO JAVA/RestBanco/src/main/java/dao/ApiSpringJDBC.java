@@ -50,4 +50,5 @@ public class ApiSpringJDBC
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
         jtm.update(QUERY_ADD_APICALL, apiKey, new java.sql.Timestamp(new Date().getTime()), call);
     }
+    
 }

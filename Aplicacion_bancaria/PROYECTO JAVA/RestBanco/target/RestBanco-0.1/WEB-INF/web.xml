@@ -17,6 +17,10 @@
         <url-pattern />
     </filter-mapping>
     <filter-mapping>
+        <filter-name>CheckOriginLogin</filter-name>
+        <url-pattern />
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>ParseData</filter-name>
         <url-pattern />
     </filter-mapping>
