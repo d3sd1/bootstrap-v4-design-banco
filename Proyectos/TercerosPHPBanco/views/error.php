@@ -2,37 +2,34 @@
 <html>
     <head>
         <title>¡Error!</title>
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" media="screen,projection">
-        <link rel="stylesheet" href="assets/css/main.css" media="screen,projection">
-
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="icon" href="http://cdn.nba.net/assets/icons/favicon16.ico" type="image/x-icon" />
     </head>
 
     <body>
-        <nav class="navbar-fixed bbva-color-bg">
+        <nav class="navbar-fixed white">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo center"><img class="logo" draggable="false" src="assets/images/logo.jpg"/></a>
+                <a href="/" class="brand-logo center"><img draggable="false" style="width: 100px;" src="http://www.stickpng.com/assets/images/58428defa6515b1e0ad75ab4.png"/></a>
             </div>
         </nav>
         <div class="parallax-container">
-            <div class="parallax"><img src="assets/images/backgrounds/bg1.jpg"></div>
+            <div class="parallax"><img src="https://images5.alphacoders.com/467/467394.jpg"></div>
         </div>
         <div class="row">
             <div class="col s12 center-align">
                 <h1>¡Ha ocurrido un error!</h1>
-                <p>La página solicitada no fue encontrada.</p>
+                <p>La consulta con la api no fue satisfactoria.</p>
                 <a class="waves-effect waves-light btn" href="/"><i class="material-icons left">arrow_back</i>Volver al inicio</a>
             </div>
         </div>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="assets/js/common.js"></script>
+        <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.parallax').parallax();
+            });
+        </script>
     </body>
 </html>

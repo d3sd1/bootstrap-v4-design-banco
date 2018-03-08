@@ -20,13 +20,13 @@
             <file>file:/C:/Users/oscar/Documents/CLASES%20ALCALA/corregir/Caja%20Seguridad%20en%20PHP-20171111T164445Z-001/Caja%20Seguridad%20en%20PHP/CajaSeguridadEduardo/src/controller/nivel1.php</file>
             <file>file:/C:/Users/oscar/Documents/CLASES%20ALCALA/corregir/Caja%20Seguridad%20en%20PHP-20171111T164445Z-001/Caja%20Seguridad%20en%20PHP/CajaSeguridadEduardo/frontController.php</file>
         </group>
-        <group name="MIOS">
-            <file>file:/D:/DAW/DEC%20-%20Desarrollo%20web%20en%20entorno%20cliente/Trimestre%202/Aplicacion_bancaria/CÓDIGO%20FUENTE/src/utils/Utils.php</file>
-            <file>file:/D:/DAW/DEC%20-%20Desarrollo%20web%20en%20entorno%20cliente/Trimestre%202/Aplicacion_bancaria/CÓDIGO%20FUENTE/views/addaccount.php</file>
-            <file>file:/D:/DAW/DEC%20-%20Desarrollo%20web%20en%20entorno%20cliente/Trimestre%202/Aplicacion_bancaria/CÓDIGO%20FUENTE/src/Services/Database.php</file>
-            <file>file:/D:/DAW/DEC%20-%20Desarrollo%20web%20en%20entorno%20cliente/Trimestre%202/Aplicacion_bancaria/CÓDIGO%20FUENTE/assets/js/addaccount.js</file>
-            <file>file:/D:/DAW/DEC%20-%20Desarrollo%20web%20en%20entorno%20cliente/Trimestre%202/Aplicacion_bancaria/CÓDIGO%20FUENTE/src/Controllers/Ajax.php</file>
+        <group>
+            <file>file:/C:/Users/Jause/Desktop/LOGIN_PHP/composer.json</file>
+            <file>file:/C:/Users/Jause/Desktop/LOGIN_PHP/src/utils/Constants.php</file>
+            <file>file:/C:/Users/Jause/Desktop/LOGIN_PHP/src/utils/Config.php</file>
+            <file>file:/C:/Users/Jause/Desktop/LOGIN_PHP/src/Services/Database.php</file>
+            <file>file:/C:/Users/Jause/Desktop/LOGIN_PHP/index.php</file>
         </group>
-        <group/>
+        <group name="MIOS"/>
     </open-files>
 </project-private>

@@ -1,13 +1,16 @@
-- subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
-- subir el proyecto con todos los codigos y la db
-- documentación
-- desplegar aplicacion a la red
-- hacer rutas del api rest (txt)
-- REVISAR QUE TODO FUNCIONE
-- quitar sout,console.log,etc
-- comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
+
 - las queries no son transaccionales!! LOL XD
-- enviar correo al cliente con su pin para logearse en la otra app
 
 APP PHP: login de CLIENTES (con pin). el pin se genera automaticamente al crear el usuario para ver sus MOVIMIENTOS
-- cliente no oficial del banco (php, solo ver movimientos de una determinada cuenta)
+- cliente no oficial del banco (php, solo ver movimientos del usuario o una cuenta
+
+
+
+- quitar sout,console.log,echo,print_r 
+- REVISAR QUE TODO FUNCIONE
+- documentación
+- comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
+- hacer rutas del api rest (en documentacion)
+- subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
+- documentar la subida y agregarlo al proyecto de jorge
+- subir el proyecto con todos los codigos y la db a classsrom
