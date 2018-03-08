@@ -32,7 +32,7 @@ var templateCliente = `<li>
                                                 </div>
                                                 <div class="input-field col s12 m4">
                                                   <i class="material-icons prefix">date_range</i>
-                                                  <input value="{{birth_date}}" name="fecha_nacimiento" class="datepicker validate" autocomplete="off" type="text"{{found}}>
+                                                  <input value="{{birth_date}}" name="fecha_nacimiento" class="datepicker" autocomplete="off" type="text"{{found}}>
                                                   <label>Fecha nacimiento</label>
                                                 </div>
                                               </div>

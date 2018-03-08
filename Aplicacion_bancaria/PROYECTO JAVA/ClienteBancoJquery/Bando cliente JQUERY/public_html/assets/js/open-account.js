@@ -30,7 +30,7 @@ $("#doSearch").click(function () {
             Materialize.toast(xhr.responseText, 4000);
             var cliente = {dni: $("#userSearchForm").find("input[name='dni']").val()},
                     tmpUser = templateCliente;
-            if (xhr.status)
+            if (xhr.status === 406)
             {
                 clientes.push(cliente);
                 tmpUser = tmpUser.replace(/{{nombre}}/g, "");
@@ -42,6 +42,15 @@ $("#doSearch").click(function () {
                 tmpUser = tmpUser.replace(/{{found}}/g, "");
                 $("#usuariosCuenta").append(tmpUser);
                 Materialize.updateTextFields();
+                $('.datepicker').pickadate({
+                    selectMonths: true,
+                    selectYears: 1,
+                    today: 'Hoy',
+                    clear: 'Reiniciar',
+                    close: 'Aceptar',
+                    closeOnSelect: true,
+                    format: "yyyy-mm-dd"
+                });
             }
             clientes.push(cliente);
         },
@@ -71,15 +80,6 @@ $("#doSearch").click(function () {
         {
             $("#cargandoCuenta").modal("close");
             $("#userSearchForm").find("input[name='dni']").val("");
-            $('.datepicker').pickadate({
-                selectMonths: true,
-                selectYears: 1,
-                today: 'Hoy',
-                clear: 'Reiniciar',
-                close: 'Aceptar',
-                closeOnSelect: true,
-                format: "yyyy-mm-dd"
-            });
         }
     });
 });
