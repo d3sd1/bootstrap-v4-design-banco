@@ -14,6 +14,7 @@ public class ClientesServices
         Cliente cliente = new Cliente();
         if (utils.comprobarDni(dni))
         {
+            System.out.println("here");
             cliente.setDni(dni);
             cliente = dao.getClienteByDni(cliente);
         }

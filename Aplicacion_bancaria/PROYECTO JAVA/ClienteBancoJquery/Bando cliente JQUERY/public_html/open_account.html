@@ -52,7 +52,7 @@
                 <form id="openAccount">
                     <div class="row">
                         <div class="input-field col s6 offset-s3">
-                            <input name="bank_account" type="text" pattern="[0-9]{10}" maxlength="10" class="validate center-align">
+                            <input name="bank_account" type="text" pattern="[0-9]{10}" maxlength="10" class="validate center-align" autocomplete="off">
                             <label class="active" for="bank_account">Número de cuenta</label>
                         </div>
                     </div>
@@ -125,6 +125,16 @@
                 </div>
             </form>
         </div>
+        <div id="confirmAdd" class="modal">
+            <div class="modal-content">
+                <h4>Solicitud de confirmación</h4>
+                <p>¿Seguro que deseas agregar la cuenta?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                <a id="addAccount" class="waves-effect waves-green btn-flat">Confirmar</a>
+            </div>
+        </div>
         <div class="fixed-action-btn hide-on-med-and-down">
             <a class="btn-floating btn-large red" data-trigger="logout">
                 <i class="large material-icons">power_settings_new</i>
@@ -133,6 +143,7 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
         <script type="text/javascript" src="assets/js/models.js"></script>
+        <script type="text/javascript" src="assets/js/templates.js"></script>
         <script type="text/javascript" src="assets/js/global.js"></script>
         <script type="text/javascript" src="assets/js/logged-in.js"></script>
         <script type="text/javascript" src="assets/js/open-account.js"></script>

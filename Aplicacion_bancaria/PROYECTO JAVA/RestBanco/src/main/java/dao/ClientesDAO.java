@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.List;
 import model.Cliente;
 import model.Operacion;
-import model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -108,7 +107,6 @@ public class ClientesDAO
         }
         catch (DataAccessException e)
         {
-            e.printStackTrace();
             cliente = new Cliente();
         }
         return cliente;

@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import services.ClientesServices;
 
-@WebServlet(name = "Cliente", urlPatterns =
+@WebServlet(name = "Clientes", urlPatterns =
 {
-    "/cliente/*"
+    "/clientes/*"
 })
-public class Cliente extends HttpServlet
+public class Clientes extends HttpServlet
 {
 
     @Override
@@ -25,8 +25,7 @@ public class Cliente extends HttpServlet
             String[] pathParts = pathInfo.split("/");
             String dni = pathParts[1];
             model.Cliente cliente = cs.getDatos(dni);
-            System.out.println("dni " + dni);
-            if(null != cliente.getDni())
+            if (null != cliente.getDni())
             {
                 request.setAttribute("data", cliente);
             }
@@ -36,11 +35,10 @@ public class Cliente extends HttpServlet
                 response.getWriter().print("La cuenta introducida no fue encontrada.");
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
             response.setStatus(400);
         }
     }
-
 }

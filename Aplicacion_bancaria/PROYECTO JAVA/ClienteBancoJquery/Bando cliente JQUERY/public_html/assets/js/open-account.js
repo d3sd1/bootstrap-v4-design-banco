@@ -1,32 +1,9 @@
-var accountNumber, clientes = [],
-        templateCliente = `<li>
-                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{dni}}</div>
-                                <div class="collapsible-body">
-                                    <span>
-                                        <div class="row">
-                                            <form class="col s12">
-                                              <div class="row">
-                                                <div class="input-field col s6">
-                                                  <i class="material-icons prefix">credit_card</i>
-                                                  <input value="{{dni}}" type="text"{{found}}>
-                                                  <label>DNI</label>
-                                                </div>
-                                                <div class="input-field col s6">
-                                                  <i class="material-icons prefix">contact_phone</i>
-                                                  <input value="{{telefono}}" type="text"{{found}}>
-                                                  <label>Teléfono</label>
-                                                </div>
-                                              </div>
-                                            </form>
-                                        </div>
-                                    </span>
-                                </div>
-                        </li>`;
+var accountNumber, clientes = [];
 $("#openAccount").submit(function (e) {
     accountNumber = $("#openAccount").find("input[name='bank_account']").val();
     if (checkBankAccountFormat(accountNumber))
     {
-        //ajax pal servidor
+        $("#confirmAdd").modal("open");
     }
     else
     {
@@ -34,18 +11,14 @@ $("#openAccount").submit(function (e) {
     }
     e.preventDefault();
 });
-$("#addClient").click(function() {
-    /*
-    si existe poner sus datos y los campos de datos no editables
-             y sino pues poner solo el dni y los campos de datos editabkles.
-                    al enviar comprobar box y usuarios y agregar a db usuarios y cuentas (se suben por el body) */
+$("#addClient").click(function () {
     $("#searchUserByDni").modal("open");
     console.log("open");
 });
-$("#doSearch").click(function() {
+$("#doSearch").click(function () {
     $("#searchUserByDni").modal("close");
     $.ajax({
-        url: API_REST_URL + "/cliente/" + $("#userSearchForm").find("input[name='dni']").val(),
+        url: API_REST_URL + "/clientes/" + $("#userSearchForm").find("input[name='dni']").val(),
         type: "GET",
         beforeSend: function (request)
         {
@@ -55,34 +28,80 @@ $("#doSearch").click(function() {
         error: function (xhr)
         {
             Materialize.toast(xhr.responseText, 4000);
-            clientes.push({dni: $("#userSearchForm").find("input[name='dni']").val()});
-            tmpUser = tmpUser.replace("{{nombre}}","");
-            tmpUser = tmpUser.replace("{{dni}}","");
-            tmpUser = tmpUser.replace("{{nombre}}","");
-            tmpUser = tmpUser.replace("{{found}}","");
-            $("#usuariosCuenta").append(tmpUser);
+            var cliente = {dni: $("#userSearchForm").find("input[name='dni']").val()},
+                    tmpUser = templateCliente;
+            if (xhr.status)
+            {
+                clientes.push(cliente);
+                tmpUser = tmpUser.replace(/{{nombre}}/g, "");
+                tmpUser = tmpUser.replace(/{{dni}}/g, cliente.dni);
+                tmpUser = tmpUser.replace(/{{address}}/g, "");
+                tmpUser = tmpUser.replace(/{{telefono}}/g, "");
+                tmpUser = tmpUser.replace(/{{email}}/g, "");
+                tmpUser = tmpUser.replace(/{{birth_date}}/g, "");
+                tmpUser = tmpUser.replace(/{{found}}/g, "");
+                $("#usuariosCuenta").append(tmpUser);
+                Materialize.updateTextFields();
+            }
+            clientes.push(cliente);
         },
         success: function (result) {
             var cliente = JSON.parse(result),
-                tmpUser = templateCliente;
-        if(clientes.find(function(usr){ return usr.dni === cliente.dni;}))
-        {
-            clientes.push(cliente);
-            tmpUser = tmpUser.replace("{{nombre}}",usuario.nombre);
-            tmpUser = tmpUser.replace("{{dni}}",usuario.dni);
-            tmpUser = tmpUser.replace("{{email}}",usuario.nombre);
-            tmpUser = tmpUser.replace("{{found}}","");
-            $("#usuariosCuenta").append(tmpUser);
-        }
-        else
-        {
-            Materialize.toast("El usuario introducido ya estaba entre los clientes de la cuenta.", 4000);
-        }
+                    tmpUser = templateCliente;
+            if (clientes.length === 0 || clientes.find(cl => cl.dni === cliente.dni).dni === "undefined")
+            {
+                clientes.push(cliente);
+                var birthDate = new Date(cliente.fechaNacimiento);
+                tmpUser = tmpUser.replace(/{{nombre}}/g, cliente.nombre);
+                tmpUser = tmpUser.replace(/{{dni}}/g, cliente.dni);
+                tmpUser = tmpUser.replace(/{{address}}/g, cliente.direccion);
+                tmpUser = tmpUser.replace(/{{telefono}}/g, cliente.telefono);
+                tmpUser = tmpUser.replace(/{{email}}/g, cliente.email);
+                tmpUser = tmpUser.replace(/{{birth_date}}/g, birthDate.getFullYear() + "-" + birthDate.getMonth() + "-" + birthDate.getDate());
+                tmpUser = tmpUser.replace(/{{found}}/g, " readonly");
+                $("#usuariosCuenta").append(tmpUser);
+                Materialize.updateTextFields();
+            }
+            else
+            {
+                Materialize.toast("El usuario introducido ya estaba entre los clientes de la cuenta.", 4000);
+            }
         },
         complete: function ()
         {
             $("#cargandoCuenta").modal("close");
             $("#userSearchForm").find("input[name='dni']").val("");
+            $('.datepicker').pickadate({
+                selectMonths: true,
+                selectYears: 1,
+                today: 'Hoy',
+                clear: 'Reiniciar',
+                close: 'Aceptar',
+                closeOnSelect: true,
+                format: "yyyy-mm-dd"
+            });
         }
     });
+});
+$("#addAccount").click(function ()
+{
+    $("#confirmAdd").modal("close");
+    /* aqui falta AJAX */
+    /*
+     al enviar comprobar box y usuarios y agregar a db usuarios y cuentas (se suben por el body).
+     para coger los usuarios le siguiente codigo:*/
+    var numeroCuenta = $("#openAccount").find("input[name='bank_account']").val(),
+            clientesAdd = [];
+    $("form[data-client]").each(function () {
+        var clienteActual = {
+            dni: $(this).find("input[name='dni']").val(),
+            nombre: $(this).find("input[name='nombre']").val(),
+            direccion: $(this).find("input[name='direccion']").val(),
+            telefono: $(this).find("input[name='telefono']").val(),
+            email: $(this).find("input[name='email']").val(),
+            fechaNacimiento: $(this).find("input[name='fecha_nacimiento']").val()
+        };
+        clientesAdd.push(clienteActual);
+    });
+    console.log(numeroCuenta, clientesAdd);
 });

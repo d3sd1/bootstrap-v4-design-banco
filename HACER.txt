@@ -7,3 +7,6 @@
 - REVISAR QUE TODO FUNCIONE
 - quitar sout,console.log,etc
 - comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
+- que al conectar se actualice fecha_conexion en la db tabla clientes!
+
+APP PHP: login de CLIENTES (con pin). el pin se genera automaticamente al crear el usuario para ver sus MOVIMIENTOS

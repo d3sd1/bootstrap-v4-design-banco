@@ -102,7 +102,7 @@ function rellenarTablaMovimientos(movimientos)
             movimiento["numeroCuenta"],
             new Date(movimiento["fecha"]).toLocaleString(),
             movimiento["descripcion"],
-            movimiento["importe"]
+            movimiento["importe"] + "€"
         ]).draw().node();
     }
 }
