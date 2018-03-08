@@ -46,6 +46,9 @@
         <div class="section white" id="content-container">
             <div class="row container center-align">
                 <h2>Apertura de cuentas</h2>
+                <div class="row">
+                    <button id="addClient" class="waves-effect waves-light btn"><i class="material-icons right">arrow_forward</i>Asociar cliente</button>
+                </div>
                 <form id="openAccount">
                     <div class="row">
                         <div class="input-field col s6 offset-s3">
@@ -54,7 +57,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">arrow_forward</i>Comprobar cuenta</button>
+                        <ul id="usuariosCuenta" class="collapsible popout" data-collapsible="accordion"></ul>
+                    </div>
+                    <div class="row">
+                        <button class="waves-effect waves-light btn" type="submit"><i class="material-icons right">arrow_forward</i>Abrir cuenta</button>
                     </div>
                 </form>
             </div>
@@ -85,6 +91,40 @@
                 </div>
             </div>
         </footer>
+        <div id="cargandoCuenta" class="modal">
+            <div class="modal-content center-align disable-scroll">
+                <h4>Cargando cuenta...</h4>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="searchUserByDni" class="modal">
+            <form class="col s12" id="userSearchForm">
+                <div class="modal-content center-align">
+                    <h4>Comprobar existencia de cuenta</h4>
+                    <div class="row">
+                        <div class="input-field col s12 m6 offset-m3">
+                            <input name="dni" pattern="[0-9]{8}[A-Z]{1}" type="text" class="validate"
+                                   autofocus required title="Introduce un DNI válido con el formato 12345678A" autocomplete="off">
+                            <label for="dni">DNI</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    <a id="doSearch" class="waves-effect waves-green btn-flat">Buscar</a>
+                </div>
+            </form>
+        </div>
         <div class="fixed-action-btn hide-on-med-and-down">
             <a class="btn-floating btn-large red" data-trigger="logout">
                 <i class="large material-icons">power_settings_new</i>

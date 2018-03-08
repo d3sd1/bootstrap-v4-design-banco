@@ -17,6 +17,7 @@ servlets\Cuentas.class
 filters\CheckOriginLogin.class
 utils\Constantes.class
 config\Configuration.class
+services\ClientesServices.class
 servlets\Operaciones$2.class
 model\User.class
 dao\CuentasDAO.class
@@ -37,6 +38,7 @@ services\CuentasServices.class
 Exceptions\CuentaNoEncontradaException.class
 dao\UsersDAO$1.class
 dao\UsersDAO.class
+servlets\Cliente.class
 model\ApiKey.class
 servlets\Movimientos.class
 services\MovementsServices.class

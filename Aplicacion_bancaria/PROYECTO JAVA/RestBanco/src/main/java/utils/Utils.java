@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import model.User;
 
 public class Utils
@@ -61,5 +63,13 @@ public class Utils
         }
         int numeroFinalResultado = suma % 9;
         return numeroFinalResultado == Integer.parseInt(numeroCuenta.substring(9, 10));
+    }
+
+    public boolean comprobarDni(String dni)
+    {
+        Pattern pattern = Pattern.compile("[0-9]{8}[A-Z]{1}");
+
+        Matcher matcher = pattern.matcher(dni);
+        return matcher.matches();
     }
 }

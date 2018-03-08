@@ -100,7 +100,7 @@ function rellenarTablaMovimientos(movimientos)
     {
         $tablaMovimientos.row.add([
             movimiento["numeroCuenta"],
-            movimiento["fecha"],
+            new Date(movimiento["fecha"]).toLocaleString(),
             movimiento["descripcion"],
             movimiento["importe"]
         ]).draw().node();

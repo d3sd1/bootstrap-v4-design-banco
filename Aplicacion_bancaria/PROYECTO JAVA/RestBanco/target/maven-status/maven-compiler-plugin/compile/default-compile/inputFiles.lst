@@ -21,10 +21,12 @@ C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\servlets\Movimientos.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\dao\DBConnection.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\config\Configuration.java
+C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\servlets\Cliente.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\Exceptions\CuentaFormatoInvalidoException.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\Exceptions\CuentaNoEncontradaException.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\model\User.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\utils\Constantes.java
+C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\services\ClientesServices.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\dao\CuentasDAO.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\config\ConfigListener.java
 C:\Users\Andrei\Desktop\APP_BANCARIA\Aplicacion_bancaria\PROYECTO JAVA\RestBanco\src\main\java\services\MovementsServices.java

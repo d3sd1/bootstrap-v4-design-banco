@@ -33,8 +33,8 @@ $("#doTransaction").click(function (e) {
             {
                 Materialize.toast(xhr.responseText, 4000);
             },
-            success: function (result) {
-                Materialize.toast("Cuenta eliminada correctamente.", 4000);
+            success: function () {
+                Materialize.toast("Reintegro realizado correctamente.", 4000);
             },
             complete: function ()
             {
@@ -57,8 +57,8 @@ $("#doTransaction").click(function (e) {
             {
                 Materialize.toast(xhr.responseText, 4000);
             },
-            success: function (result) {
-                Materialize.toast("Cuenta eliminada correctamente.", 4000);
+            success: function () {
+                Materialize.toast("Ingreso realizado correctamente.", 4000);
             },
             complete: function ()
             {
