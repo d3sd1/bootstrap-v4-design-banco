@@ -11,6 +11,7 @@ public class Cliente {
     private Timestamp fechaNacimiento;
     private Timestamp fechaConexion;
     private int conteoCuentas;
+    private int pin;
     private double saldo;
 
     public String getDni()
@@ -102,6 +103,16 @@ public class Cliente {
     public void setSaldo(double saldo)
     {
         this.saldo = saldo;
+    }
+
+    public int getPin()
+    {
+        return pin;
+    }
+
+    public void setPin(int pin)
+    {
+        this.pin = pin;
     }
     
 }

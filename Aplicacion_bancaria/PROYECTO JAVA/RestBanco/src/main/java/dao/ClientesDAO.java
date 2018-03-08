@@ -13,9 +13,31 @@ public class ClientesDAO
     private final String SQL_QUERY_UPD_LESSSALDOCLIENTE = "UPDATE clientes SET saldo=saldo-? WHERE dni=?";
     private final String SQL_QUERY_UPD_MORESALDOCLIENTE = "UPDATE clientes SET saldo=saldo+? WHERE dni=?";
     private final String SQL_QUERY_DEL_CLIENTE = "DELETE FROM clientes WHERE dni=?";
-    private final String SQL_QUERY_UPD_CONTEOCUENTAS = "UPDATE clientes SET conteo_cuentas=? WHERE dni=?";
+    private final String SQL_QUERY_ADD_CLIENTE = "INSERT INTO clientes "
+            + "(dni,nombre,direccion,telefono,email,fecha_nacimiento,fecha_conexion,conteo_cuentas,saldo,pin) "
+            + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String SQL_QUERY_UPD_LESSCONTEOCUENTAS = "UPDATE clientes SET conteo_cuentas=conteo_cuentas-1 WHERE dni=?";
+    private final String SQL_QUERY_UPD_MORECONTEOCUENTAS = "UPDATE clientes SET conteo_cuentas=conteo_cuentas+1 WHERE dni=?";
     private final String SQL_QUERY_GET_CLIENT_DNI = "SELECT dni,nombre,direccion,telefono,email,fecha_nacimiento,fecha_conexion,"
             + "conteo_cuentas,saldo FROM clientes WHERE dni=?";
+
+    public boolean addCliente(Cliente cliente)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success = false;
+        try
+        {
+            jtm.update(SQL_QUERY_ADD_CLIENTE, 
+                cliente.getDni(),cliente.getNombre(),cliente.getDireccion(),cliente.getTelefono(),cliente.getEmail(),cliente.getFechaNacimiento(),
+                cliente.getFechaConexion(),cliente.getConteoCuentas(),cliente.getSaldo(),cliente.getPin());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
 
     public boolean reducirSaldoClientes(Operacion operacion, List<Cliente> clientes)
     {
@@ -35,7 +57,7 @@ public class ClientesDAO
         }
         return success;
     }
-    
+
     public boolean aumentarSaldoClientes(Operacion operacion, List<Cliente> clientes)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
@@ -54,13 +76,30 @@ public class ClientesDAO
         }
         return success;
     }
+
     public boolean reducirCuentasTitular(Cliente cliente)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
         boolean success;
         try
         {
-            jtm.update(SQL_QUERY_UPD_CONTEOCUENTAS, cliente.getConteoCuentas(), cliente.getDni());
+            jtm.update(SQL_QUERY_UPD_LESSCONTEOCUENTAS, cliente.getDni());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
+
+    public boolean aumentarCuentasTitular(Cliente cliente)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_UPD_MORECONTEOCUENTAS, cliente.getDni());
             success = true;
         }
         catch (DataAccessException e)
@@ -85,6 +124,7 @@ public class ClientesDAO
         }
         return success;
     }
+
     public Cliente getClienteByDni(Cliente cliente)
     {
         JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());

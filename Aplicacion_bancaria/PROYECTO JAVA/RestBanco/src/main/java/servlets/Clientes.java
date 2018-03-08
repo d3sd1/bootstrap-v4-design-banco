@@ -37,7 +37,6 @@ public class Clientes extends HttpServlet
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             response.setStatus(400);
         }
     }

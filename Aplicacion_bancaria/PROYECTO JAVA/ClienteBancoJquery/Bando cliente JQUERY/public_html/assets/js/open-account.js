@@ -1,6 +1,7 @@
 var accountNumber, clientes = [];
 $("#openAccount").submit(function (e) {
     accountNumber = $("#openAccount").find("input[name='bank_account']").val();
+    console.log(accountNumber);
     if (checkBankAccountFormat(accountNumber))
     {
         $("#confirmAdd").modal("open");
@@ -103,5 +104,28 @@ $("#addAccount").click(function ()
         };
         clientesAdd.push(clienteActual);
     });
-    console.log(numeroCuenta, clientesAdd);
+    $.ajax({
+        url: API_REST_URL + "/cuenta/" + numeroCuenta,
+        type: "PUT",
+        data: JSON.stringify(clientesAdd),
+        beforeSend: function (request)
+        {
+            request.setRequestHeader("token", localStorage.getItem("token"));
+            $("#cargandoCuenta").modal("open");
+        },
+        error: function (xhr)
+        {
+            Materialize.toast(xhr.responseText, 4000);
+        },
+        success: function (result) {
+            Materialize.toast("Cuenta agregada correctamente.", 4000);
+            $("#usuariosCuenta").html("");
+            $("#openAccount").find("input[name='bank_account']").val("");
+            Materialize.updateTextFields();
+        },
+        complete: function ()
+        {
+            $("#cargandoCuenta").modal("close");
+        }
+    });
 });

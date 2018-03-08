@@ -15,6 +15,8 @@ public class CuentasDAO
     private final String SQL_QUERY_GET_CUENTA = "SELECT numero_cuenta,saldo FROM cuentas WHERE numero_cuenta = ?";
     private final String SQL_QUERY_DEL_CUENTA = "DELETE FROM cuentas WHERE numero_cuenta=?";
     private final String SQL_QUERY_UPD_LESSSALDOCUENTA = "UPDATE cuentas SET saldo=saldo-? WHERE numero_cuenta=?";
+    private final String SQL_QUERY_ADD_CLIENTECUENTA = "INSERT INTO clientes_cuentas (dni,numero_cuenta) VALUES (?,?)";
+    private final String SQL_QUERY_ADD_CUENTA = "INSERT INTO cuentas (numero_cuenta,saldo) VALUES (?,?)";
     private final String SQL_QUERY_UPD_MORESALDOCUENTA = "UPDATE cuentas SET saldo=saldo+? WHERE numero_cuenta=?";
     private final String SQL_QUERY_DEL_CLIENTES_CUENTA = "DELETE FROM clientes_cuentas WHERE numero_cuenta=?";
     private final String SQL_QUERY_GET_CLIENTE_BY_CUENTA = "SELECT cl.dni,cl.nombre,cl.direccion,cl.telefono,cl.email,"
@@ -30,6 +32,36 @@ public class CuentasDAO
         try
         {
             jtm.update(SQL_QUERY_UPD_LESSSALDOCUENTA, operacion.getAmount(), cuenta.getNumeroCuenta());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
+    public boolean agregarCuentaTitular(Cliente cliente, Cuenta cuenta)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_ADD_CLIENTECUENTA, cliente.getDni(), cuenta.getNumeroCuenta());
+            success = true;
+        }
+        catch (DataAccessException e)
+        {
+            success = false;
+        }
+        return success;
+    }
+    public boolean agregarCuenta(Cuenta cuenta)
+    {
+        JdbcTemplate jtm = new JdbcTemplate(DBConnection.getInstance().getDataSource());
+        boolean success;
+        try
+        {
+            jtm.update(SQL_QUERY_ADD_CUENTA, cuenta.getNumeroCuenta(), cuenta.getSaldo());
             success = true;
         }
         catch (DataAccessException e)

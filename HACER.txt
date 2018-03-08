@@ -1,12 +1,11 @@
 - subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
 - subir el proyecto con todos los codigos y la db
-- cliente no oficial del banco (php, solo ver movimientos de una determinada cuenta)
 - documentación
 - desplegar aplicacion a la red
 - hacer rutas del api rest (txt)
 - REVISAR QUE TODO FUNCIONE
 - quitar sout,console.log,etc
 - comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
-- que al conectar se actualice fecha_conexion en la db tabla clientes!
 
 APP PHP: login de CLIENTES (con pin). el pin se genera automaticamente al crear el usuario para ver sus MOVIMIENTOS
+- cliente no oficial del banco (php, solo ver movimientos de una determinada cuenta)

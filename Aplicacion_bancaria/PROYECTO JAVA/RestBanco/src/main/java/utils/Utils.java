@@ -3,8 +3,6 @@ package utils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.security.SecureRandom;
-import java.time.Instant;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -15,6 +13,7 @@ public class Utils
 {
 
     private final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private final String NUMERIC_STRING = "0123456789";
 
     public String generateUserToken(User user)
     {
@@ -44,6 +43,19 @@ public class Utils
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
         return builder.toString();
+    }
+    public int generatePin()
+    {
+        String builder = "";
+        int pinLength = 4;
+        Random r = new SecureRandom();
+
+        while (pinLength-- != 0)
+        {
+            int character = (int) (r.nextInt(NUMERIC_STRING.length()));
+            builder = builder + NUMERIC_STRING.charAt(character);
+        }
+        return Integer.parseInt(builder);
     }
 
     public boolean comprobarFormatoCuenta(String numeroCuenta)
