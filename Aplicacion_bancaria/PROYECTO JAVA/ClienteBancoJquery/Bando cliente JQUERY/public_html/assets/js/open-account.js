@@ -45,7 +45,7 @@ $("#doSearch").click(function () {
                 Materialize.updateTextFields();
                 $('.datepicker').pickadate({
                     selectMonths: true,
-                    selectYears: 1,
+                    selectYears: 100,
                     today: 'Hoy',
                     clear: 'Reiniciar',
                     close: 'Aceptar',

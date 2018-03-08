@@ -6,6 +6,8 @@
 - REVISAR QUE TODO FUNCIONE
 - quitar sout,console.log,etc
 - comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
+- las queries no son transaccionales!! LOL XD
+- enviar correo al cliente con su pin para logearse en la otra app
 
 APP PHP: login de CLIENTES (con pin). el pin se genera automaticamente al crear el usuario para ver sus MOVIMIENTOS
 - cliente no oficial del banco (php, solo ver movimientos de una determinada cuenta)
