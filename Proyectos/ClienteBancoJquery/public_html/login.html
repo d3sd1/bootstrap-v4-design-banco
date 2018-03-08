@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BBVA - Conexión</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+        <!-- Iconos de google -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compilación de materialize -->
+        <link rel="stylesheet" href="assets/css/materialize.css">
+        <!-- Diseños específicos del login -->
+        <link rel="stylesheet" href="assets/css/login.css">
+    </head>
+    <body class="login-bg">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center"><img alt="Logotipo" draggable="false" src="assets/img/logo.jpg"/></a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="login card-panel center-align col s12 m6 offset-m3">
+                    <div id="loading" class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <form id="login" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input name="dni" pattern="[0-9]{8}[A-Z]{1}" type="text" class="validate"
+                                       autofocus required title="Introduce un DNI válido con el formato 12345678A" autocomplete="off">
+                                <label>DNI Trabajador</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="password" type="password" class="validate" required>
+                                <label>Contraseña</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right">arrow_forward</i>Conectar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+        <script type="text/javascript" src="assets/js/global.js"></script>
+        <script type="text/javascript" src="assets/js/login.js"></script>
+    </body>
+</html>

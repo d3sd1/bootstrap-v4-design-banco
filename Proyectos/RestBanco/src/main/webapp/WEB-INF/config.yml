@@ -1,0 +1,12 @@
+mysqlHost: db4free.net
+mysqlPort: 3307
+mysqlUser: appbanco
+mysqlPass: appbanco
+mysqlDatabase: appbanco
+apiIntervalSeconds: 600
+apiMaxIntervalCalls: 50
+mailFrom: alumno1@iesquevedo.es
+smtpServer: smtp.gmail.com
+smtpPort: 587
+mailPass: alumnodam2
+limitActivationMins: 30

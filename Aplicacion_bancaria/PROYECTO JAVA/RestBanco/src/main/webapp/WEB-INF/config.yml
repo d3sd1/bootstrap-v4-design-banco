@@ -1,7 +1,0 @@
-mysqlHost: db4free.net
-mysqlPort: 3307
-mysqlUser: appbanco
-mysqlPass: appbanco
-mysqlDatabase: appbanco
-apiIntervalSeconds: 600
-apiMaxIntervalCalls: 50
