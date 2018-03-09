@@ -1,6 +1,6 @@
 - REVISAR QUE TODO FUNCIONE
-- documentación
 - comprobar accesibilidad y checkear responsive etc. del diseño de la app principal
+- documentación
 - hacer rutas del api rest (en documentacion)
 - subir el proyecto a internet para que lo corrija ahi y no le cueste hacerlo
 - documentar la subida y agregarlo al proyecto de jorge
