@@ -20,7 +20,7 @@ public class OperacionesServices
         CuentasDAO cDao = new CuentasDAO();
         ClientesDAO clDao = new ClientesDAO();
         MovimientosDAO mDao = new MovimientosDAO();
-        
+
         Utils utils = new Utils();
         boolean success = true;
         boolean formatoCuentaValido = utils.comprobarFormatoCuenta(operacion.getAccountNumber());
@@ -39,38 +39,41 @@ public class OperacionesServices
             throw new CuentaNoEncontradaException();
         }
         /* Comprobar que la cuenta tiene suficientes fondos */
-        if(cuenta.getSaldo() < operacion.getAmount())
+        if (cuenta.getSaldo() < operacion.getAmount())
         {
             throw new FondosInsuficientesException();
         }
         cuenta.setTitulares(cDao.getCuentaTitularesByNumero(cuenta));
         /* Eliminar saldo de la tabla cuentas */
-        if(!cDao.reducirSaldoCuenta(operacion,cuenta))
+        if (!cDao.reducirSaldoCuenta(operacion, cuenta))
         {
             success = false;
         }
-        
-        /* Modificar saldo clientes */
-        if(!clDao.reducirSaldoClientes(operacion,cuenta.getTitulares()))
+
+        /* Modificar saldo clientes, sólo si los tiene asociados. */
+        if (!cuenta.getTitulares().isEmpty())
         {
-            success = false;
+            if (!clDao.reducirSaldoClientes(operacion, cuenta.getTitulares()))
+            {
+                success = false;
+            }
         }
-        
+
         /* Grabar movimiento */
-        if(!mDao.grabarMovimiento(operacion))
+        if (!mDao.grabarMovimiento(operacion))
         {
             success = false;
         }
         return success;
     }
-    
+
     @Transactional
     public boolean ingreso(Operacion operacion) throws CuentaFormatoInvalidoException, CuentaNoEncontradaException, FondosInsuficientesException
     {
         CuentasDAO cDao = new CuentasDAO();
         ClientesDAO clDao = new ClientesDAO();
         MovimientosDAO mDao = new MovimientosDAO();
-        
+
         Utils utils = new Utils();
         boolean success = true;
         boolean formatoCuentaValido = utils.comprobarFormatoCuenta(operacion.getAccountNumber());
@@ -89,21 +92,21 @@ public class OperacionesServices
             throw new CuentaNoEncontradaException();
         }
         cuenta.setTitulares(cDao.getCuentaTitularesByNumero(cuenta));
-        
+
         /* Actualizar saldo de la tabla cuentas */
-        if(!cDao.aumentarSaldoCuenta(operacion,cuenta))
+        if (!cDao.aumentarSaldoCuenta(operacion, cuenta))
         {
             success = false;
         }
-        
+
         /* Modificar saldo clientes */
-        if(!clDao.aumentarSaldoClientes(operacion,cuenta.getTitulares()))
+        if (!clDao.aumentarSaldoClientes(operacion, cuenta.getTitulares()))
         {
             success = false;
         }
-        
+
         /* Grabar movimiento */
-        if(!mDao.grabarMovimiento(operacion))
+        if (!mDao.grabarMovimiento(operacion))
         {
             success = false;
         }
