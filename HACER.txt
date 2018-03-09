@@ -1,11 +1,4 @@
 
-- las queries no son transaccionales!! LOL XD
-
-APP PHP: login de CLIENTES (con pin). el pin se genera automaticamente al crear el usuario para ver sus MOVIMIENTOS
-- cliente no oficial del banco (php, solo ver movimientos del usuario o una cuenta
-
-
-
 - quitar sout,console.log,echo,print_r 
 - REVISAR QUE TODO FUNCIONE
 - documentación

@@ -4,26 +4,26 @@ namespace Controllers;
 use Services\API;
 
 class Views {
-    public function login(){
+    public function operaciones(){
         $api = new API();
-        include "views/login.php";
+        include "views/operaciones.php";
     }
-    public function doLogin($dni,$pin){
+    public function doOperacion($tipo, $cantidad, $cuenta){
         $api = new API();
-        include "views/dologin.php";
-        $loginSuccess = $api->doLogin($dni,$pin);
-        if($loginSuccess)
+        $operacion = array("type" => $tipo,
+            "amount" => $cantidad,
+            "description" => ucfirst($tipo)." de Endesa.",
+            "accountNumber" => $cuenta);
+        if($tipo === "ingreso")
         {
-            header("Location: /?page=error");
-            die();
+            $response = $api->doIngreso($operacion);
         }
         else
         {
-            header("Location: /?page=error");
-            die();
+            $response = $api->doReintegro($operacion);
         }
-    }
-    public function error(){
-        include "views/error.php";
+        
+        include "views/dooperacion.php";
+        
     }
 }

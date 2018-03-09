@@ -9,14 +9,12 @@ $page = (isset($_REQUEST[Constants::PAR_PAGE]) ? $_REQUEST[Constants::PAR_PAGE]:
 $cont = new Views();
 switch($page)
 {
-    case "dologin":
-        $dni = @$_REQUEST[Constants::PAR_DNI];
-        $pin = @$_REQUEST[Constants::PAR_PIN];
-        $cont->doLogin($dni,$pin);
-    break;
-    case "error":
-        $cont->error();
+    case "dooperacion":
+        $tipo = @$_REQUEST[Constants::PAR_TIPO];
+        $cantidad = @$_REQUEST[Constants::PAR_CANTIDAD];
+        $cuenta = @$_REQUEST[Constants::PAR_CUENTA];
+        $cont->doOperacion($tipo,$cantidad, $cuenta);
     break;
     default:
-        $cont->login();
+        $cont->operaciones();
 }

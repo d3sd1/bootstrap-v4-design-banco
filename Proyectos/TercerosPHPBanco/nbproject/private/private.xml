@@ -29,5 +29,9 @@
             <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/src/utils/Constants.php</file>
             <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/src/Services/API.php</file>
         </group>
+        <group name="Websockets">
+            <file>file:/C:/Users/DAW/Documents/APPBANCO/Proyectos/TercerosPHPBanco/src/Services/API.php</file>
+            <file>file:/C:/Users/DAW/Documents/APPBANCO/Proyectos/TercerosPHPBanco/src/Controllers/Views.php</file>
+        </group>
     </open-files>
 </project-private>

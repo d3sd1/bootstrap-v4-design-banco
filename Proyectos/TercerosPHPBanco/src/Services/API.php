@@ -7,28 +7,53 @@ use Utils\Constants;
 
 class API
 {
-    private function apiCall($url, $type = 'GET')
+
+    private function apiCall($url, $type = 'GET', $bodyObj = null)
     {
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-type' => 'application/json',
+            'rest-api-key' => Constants::API_KEY
+        ];
         try
         {
-            $client = new Client(['verify' => false]);
-            $response = $client->request($type, $url, [
-                'headers' => [
-                    'Accept'       => 'application/json',
-                    'Content-type' => 'application/json'
-            ]]);
-            $result = json_decode($response->getBody()->getContents(), true);
-        }
-        catch(\GuzzleHttp\Exception\ClientException $e)
+
+            $client = new Client(['verify' => false,'headers' => $headers]);
+            switch ($type)
+            {
+                case "GET":
+                    $response = $client->request("GET", $url, [
+                        'headers' => $headers]);
+                    break;
+                case "POST":
+                    $response = $client->post($url, [
+                        \GuzzleHttp\RequestOptions::JSON => $bodyObj
+                    ]);
+                    break;
+                case "PUT":
+                    $response = $client->put($url, [
+                        \GuzzleHttp\RequestOptions::JSON => $bodyObj
+                    ]);
+                    break;
+            }
+            $result = array("code" => $response->getStatusCode(), "message" => $response->getBody());
+        } catch (\GuzzleHttp\Exception\ClientException $e)
         {
-            $result = false;
+            $result = array("code" => $e->getResponse()->getStatusCode(), "message" => $e->getResponse()->getBody());
         }
-        
+
+
         return $result;
     }
-    public function doLogin($playerId)
+
+    public function doIngreso($operacion)
     {
-        return $this->apiCall($playerId,Constants::API_URL + Constants::API_URL_CLIENTLOGIN);
+        return $this->apiCall(Constants::API_URL.Constants::API_URL_OPERACIONES, "PUT", $operacion);
+    }
+
+    public function doReintegro($operacion)
+    {
+        return $this->apiCall(Constants::API_URL.Constants::API_URL_OPERACIONES, "POST", $operacion);
     }
 
 }
