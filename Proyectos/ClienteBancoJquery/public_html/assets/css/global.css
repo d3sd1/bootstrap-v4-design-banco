@@ -1,3 +1,6 @@
 .disable-scroll {
     overflow: hidden
 }
+#sidenav-overlay {
+z-index: 1;
+}

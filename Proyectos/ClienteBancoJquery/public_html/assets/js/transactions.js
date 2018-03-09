@@ -25,7 +25,6 @@ $("#doTransaction").click(function (e) {
             data: JSON.stringify(transaction),
             beforeSend: function (request)
             {
-                console.log(localStorage.getItem("token"));
                 request.setRequestHeader("token", localStorage.getItem("token"));
                 $("#cargandoCuenta").modal("open");
             },

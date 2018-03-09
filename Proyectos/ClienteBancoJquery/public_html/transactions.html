@@ -8,6 +8,7 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
         <link rel="stylesheet" href="assets/css/materialize.css">
+        <link rel="stylesheet" href="assets/css/global.css">
     </head>
     <body>
         <div class="navbar-fixed">
@@ -48,7 +49,7 @@
                 <h2>Ingresos y reintegros</h2>
                 <form id="putTransation">
                     <div class="row ">
-                        <div class="switch col s6 offset-s3">
+                        <div class="switch col s12 m6 offset-m3">
                             <label>
                                 Ingreso
                                 <input type="checkbox" name="opType">
@@ -58,17 +59,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s8 m3 offset-m3">
+                        <div class="input-field col s12 m6 l3 offset-l3">
                             <input name="bank_account" autocomplete="off" type="text" pattern="[0-9]{10}" maxlength="10" class="validate center-align">
                             <label class="active" for="bank_account">Número de cuenta</label>
                         </div>
-                        <div class="input-field col s4 m3">
+                        <div class="input-field col s12 m6 l3">
                             <input name="amount" type="number" class="validate center-align">
                             <label class="active" for="amount">Cantidad de la operación</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12 m6 offset-m3">
+                        <div class="input-field col s12 m12 l6 offset-l3">
                             <textarea name="description" class="materialize-textarea"></textarea>
                             <label for="description">Descripción de la operación</label>
                         </div>

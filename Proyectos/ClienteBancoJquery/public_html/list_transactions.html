@@ -8,6 +8,7 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
         <link rel="stylesheet" href="assets/css/materialize.css">
+        <link rel="stylesheet" href="assets/css/global.css">
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
         <link href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.css" rel="stylesheet" type="text/css" />
     </head>
@@ -51,22 +52,22 @@
                 <div class="row">
                     <form class="col s12" id="filtrarMovimientos">
                         <div class="row">
-                            <div class="input-field col s3">
+                            <div class="input-field col s12 m6 l3">
                                 <i class="material-icons prefix">account_balance_wallet </i>
                                 <input name="numeroCuenta" type="text" pattern="[0-9]{10}" maxlength="10" class="validate">
                                 <label for="numeroCuenta">Número de cuenta</label>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field col s12 m6 l3">
                                 <i class="material-icons prefix">date_range</i>
                                 <input name="fechaInicio" type="text" class="datepicker">
                                 <label for="fechaInicio">Fecha de inicio</label>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field col s12 m6 l3">
                                 <i class="material-icons prefix">date_range</i>
                                 <input name="fechaFinal" type="text" class="datepicker">
                                 <label for="fechaFinal">Fecha final</label>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field col s12 m6 l3">
                                 <button type="submit" class="waves-effect waves-light btn col s12"><i class="material-icons right">arrow_forward</i>Filtrar</button>
                             </div>
                             

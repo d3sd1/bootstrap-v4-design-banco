@@ -1,5 +1,3 @@
-
-- quitar sout,console.log,echo,print_r 
 - REVISAR QUE TODO FUNCIONE
 - documentación
 - comprobar accesibilidad y checkear responsive etc. del diseño de la app principal

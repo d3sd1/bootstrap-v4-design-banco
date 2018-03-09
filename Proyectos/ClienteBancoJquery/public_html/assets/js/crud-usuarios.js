@@ -153,9 +153,6 @@ $("#datosUsuario").submit(function (e) {
             },
             success: function (result) {
                 var newUser = JSON.parse(result);
-                console.log(result);
-                console.log(newUser);
-                console.log(newUser["dni"]);
                 $tablaUsuarios.row.add([
                     newUser["id"],
                     newUser["dni"],

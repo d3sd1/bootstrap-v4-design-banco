@@ -1,7 +1,6 @@
 var accountNumber, clientes = [];
 $("#openAccount").submit(function (e) {
     accountNumber = $("#openAccount").find("input[name='bank_account']").val();
-    console.log(accountNumber);
     if (checkBankAccountFormat(accountNumber))
     {
         $("#confirmAdd").modal("open");
@@ -14,7 +13,6 @@ $("#openAccount").submit(function (e) {
 });
 $("#addClient").click(function () {
     $("#searchUserByDni").modal("open");
-    console.log("open");
 });
 $("#doSearch").click(function () {
     $("#searchUserByDni").modal("close");

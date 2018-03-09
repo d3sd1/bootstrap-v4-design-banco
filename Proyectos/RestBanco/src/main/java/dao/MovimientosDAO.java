@@ -1,10 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +8,8 @@ import model.Cuenta;
 import model.FiltrarMovimientos;
 import model.Movimiento;
 import model.Operacion;
-import model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 public class MovimientosDAO
 {
@@ -95,7 +87,6 @@ public class MovimientosDAO
         boolean success = false;
 
         double amount;
-        System.out.println("type " + operacion.getType());
         if(operacion.getType().equals("reintegro"))
         {
             amount = operacion.getAmount()*-1;
