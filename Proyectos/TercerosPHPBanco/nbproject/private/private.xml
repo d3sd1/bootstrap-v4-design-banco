@@ -21,14 +21,7 @@
             <file>file:/C:/Users/oscar/Documents/CLASES%20ALCALA/corregir/Caja%20Seguridad%20en%20PHP-20171111T164445Z-001/Caja%20Seguridad%20en%20PHP/CajaSeguridadEduardo/frontController.php</file>
         </group>
         <group name="MIOS"/>
-        <group>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/index.php</file>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/views/dologin.php</file>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/views/error.php</file>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/src/Controllers/Views.php</file>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/src/utils/Constants.php</file>
-            <file>file:/C:/Users/Andrei/Desktop/APP_BANCARIA/Proyectos/TercerosPHPBanco/src/Services/API.php</file>
-        </group>
         <group name="Websockets"/>
+        <group/>
     </open-files>
 </project-private>
